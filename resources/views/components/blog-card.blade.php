@@ -40,7 +40,7 @@
 
             <!-- Buttons -->
             <div class="flex justify-between bt-2 w-1/2 mx-auto">
-                @if($blog->user_id == Auth::id())
+                @if($blog->user_id == Auth::user())
                 <form action="{{ route('user.edit',$blog->id) }}" method="GET">
                     <div class="flex flex-row-reverse">
                         @csrf
