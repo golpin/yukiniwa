@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -13,11 +13,12 @@ class ConfirmablePasswordController extends Controller
     /**
      * Show the confirm password view.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show(Request $request)
     {
-        return view('auth.confirm-password');
+        return view('user.auth.confirm-password');
     }
 
     /**
@@ -28,7 +29,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Auth::guard('web')->validate([
+        if (! Auth::guard('user')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {

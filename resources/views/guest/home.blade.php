@@ -16,14 +16,14 @@
                     @endif
                     <div class="text-gray-200 body-font">
                         <div class="flex  justify-items-center flex-wrap px-auto">
-                            @foreach ($blogs as $blog)
+                            @foreach ($posts as $post)
                             <div class="p-2 md:w-1/2 lg:w-1/3 mx-auto flex flex-wrap ">
-                                <x-blog-card  :blog="$blog"/>
+                                <x-blog-card  :post="$post"/>
                             </div>
                             @endforeach
                         </div>
                     </div>
-                    {{ $blogs->links() }}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
