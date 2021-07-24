@@ -1,20 +1,20 @@
 <div class="w-full bg-gray-50 border p-6 rounded-lg mx-auto" x-data="{ showModal : false }">
-    @if (!is_null($blog->image))
+    @if (!is_null($post->image))
     <img class="h-60 w-auto  rounded object-center mx-auto"
-    src="{{ asset('storage/images/'.$blog->image) }}" alt="content" @click="showModal = !showModal">
+    src="{{ asset('storage/images/'.$post->image) }}" alt="content" @click="showModal = !showModal">
     @else
     <img class="h-60 w-auto rounded object-center  mx-auto"
     src="{{ asset('storage/images/'.'no_image_logo.png') }}" alt="content" @click="showModal = !showModal">
     @endif
     <h3 class="text-lg text-indigo-500 font-medium overflow-ellipsis overflow-hidden">
-        {{ $blog->title}}
+        {{ $post->title}}
     </h3>
 
     <p class="text-gray-600  text-md">
-            投稿者:{{ $blog->user->name}}
+            投稿者:{{ $post->user->name}}
     </p>
     <p class="text-gray-600  text-sm">
-        投稿日:{{ $blog->created_at->format('Y-m-d')}}
+        投稿日:{{ $post->created_at->format('Y-m-d')}}
     </p>
 
     
@@ -24,18 +24,18 @@
         <!-- Modal -->
         <div x-show="showModal" class="bg-white rounded-xl shadow-2xl p-6 sm:w-1/2 mx-10" @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
             <!--image -->
-            @if (!is_null($blog->image))
+            @if (!is_null($post->image))
             <img class="max-h-96 rounded object-center mx-auto"
-            src="{{ asset('storage/images/'.$blog->image) }}"  alt="content" >
+            src="{{ asset('storage/images/'.$post->image) }}"  alt="content" >
             @else
             <img class="max-h-96  rounded object-center  mx-auto"
             src="{{ asset('storage/images/'.'no_image_logo.png') }}"  alt="content">
             @endif
             <!-- Title -->
-            <h2 class="px-4 my-2 text-gray-800 text-2xl font-medium text-center">{{ $blog->title}}</h2>
+            <h2 class="px-4 my-2 text-gray-800 text-2xl font-medium text-center">{{ $post->title}}</h2>
             <!-- content 🍺 -->
             <p class="px-4 mb-2text-md text-gray-900 font-medium title-font ">
-                {{ $blog->content}}
+                {{ $post->content}}
             </p>
 
             <!-- Buttons -->
@@ -54,7 +54,7 @@
                         </button>
                     </div>
 
-                <form action="{{ route('user.delete',$blog->id) }}" method="POST" onsubmit="return checkDelete()">
+                <form action="{{ route('user.delete',$post->id) }}" method="POST" onsubmit="return checkDelete()">
                     <div class=" flex flex-row-reverse">
                         @csrf
                         <button type="submit"
