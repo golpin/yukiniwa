@@ -19,7 +19,7 @@
                         <div class="flex  justify-items-center flex-wrap px-auto">
                             @foreach ($posts as $post)
                                 <div class="p-2 md:w-1/2 lg:w-1/3 mx-auto flex flex-wrap ">
-                                    <x-blog-card  :blog="$blog" />
+                                    <x-blog-card  :post="$post" />
                                 </div>
                             @endforeach
                         </div>
