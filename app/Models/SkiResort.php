@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Post;
 
 class SkiResort extends Model
 {
@@ -13,5 +14,12 @@ class SkiResort extends Model
 
     protected $fillable = [
         'name',
-    ];                 
+        'address'
+        
+    ];        
+    
+    public function post()
+    {
+        return $this->hasMany(Post::class,'ski_resort_id');
+    }
 }

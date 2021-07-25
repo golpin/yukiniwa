@@ -1,4 +1,4 @@
-<div class="w-full bg-gray-50 border p-6 rounded-lg mx-auto" x-data="{ showModal : false }">
+<div class="w-full bg-gray-50 border p-6 rounded-lg mx-auto shadow-md" x-data="{ showModal : false }">
     @if (!is_null($post->image))
     <img class="h-60 w-auto  rounded object-center mx-auto"
     src="{{ asset('storage/images/'.$post->image) }}" alt="content" @click="showModal = !showModal">
@@ -12,6 +12,9 @@
 
     <p class="text-gray-600  text-md">
             投稿者:{{ $post->user->name}}
+    </p>
+    <p class="text-gray-600  text-md">
+        ゲレンデ:{{ $post->ski_resort->name}}
     </p>
     <p class="text-gray-600  text-sm">
         投稿日:{{ $post->created_at->format('Y-m-d')}}
@@ -40,7 +43,7 @@
 
             <!-- Buttons -->
             <div class="flex justify-between bt-2 w-1/2 mx-auto">
-                @if($post->user_id == Auth::user())
+                @if($post->user_id == Auth::id())
                 <form action="{{ route('user.edit',$post->id) }}" method="GET">
                     <div class="flex flex-row-reverse">
                         @csrf

@@ -15,7 +15,8 @@ class CreateSkiResortsTable extends Migration
     {
         Schema::create('ski_resorts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('address');
             $table->timestamps();
         });
     }
