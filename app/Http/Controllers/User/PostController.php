@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function home()
+    public function home(Post $post)
     {
 
         $posts = Post::paginate(12);
+
 
         //post9件で1ページとする
         //dd($posts);
