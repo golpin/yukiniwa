@@ -27,6 +27,7 @@ Route::get('/', [PostController::class, 'guest'])->name('guest');
 
 Route::middleware('auth:users')->group(function () {
     Route::get('/home', [PostController::class, 'home'])->name('home');
+    Route::get('/mypost', [PostController::class, 'mypost'])->name('mypost');
     Route::get('/create', [PostController::class, 'create'])->name('create');
     Route::post('/store', [PostController::class, 'store'])->name('store');
     Route::post('/delete/{id}', [PostController::class, 'delete'])->name('delete');

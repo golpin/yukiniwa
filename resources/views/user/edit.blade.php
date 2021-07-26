@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('記事更新フォーム') }}
+            {{ __('投稿編集') }}
         </h2>
     </x-slot>
 
@@ -9,23 +9,35 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-16 ">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="px-2 py-4 bg-indigo-100 border-b border-gray-200">
-                    <h2 class="w-3/4 sm:w-1/3  mx-auto  text-center  text-xl border-b-2 border-indigo-500">記事更新フォーム</h2>
-                    <form action="{{ route('user.update',$blog->id) }}" method="POST" onsubmit="return checkSubmit()"
+                    <h2 class="w-3/4 sm:w-1/3  mx-auto  text-center  text-xl border-b-2 border-indigo-500">投稿編集フォーム</h2>
+                    <form action="{{ route('user.update',$post->id) }}" method="POST" onsubmit="return checkSubmit()"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="p-2 w-3/4 mx-auto">
                             <div class="relative">
                                 <label for="title" class="leading-7 text-lg text-gray-800">タイトル</label>
-                                <input type="text" id="title" name="title" value="{{ $blog->title }}" required
+                                <input type="text" id="title" name="title" value="{{ $post->title }}" required
                                     class="w-full bg-gray-50 bg-opacity-100 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
                         <div class="p-2 w-3/4 mx-auto">
                             <div class="relative">
                                 <label for="content" class="leading-7 text-lg text-gray-800">本文</label>
-                                <textarea rows="6" id="content" name="content" value="{{ old($blog->content) }}"
+                                <textarea rows="6" id="content" name="content" value="{{ old($post->content) }}"
                                     required
-                                    class="w-full bg-gray-50 bg-opacity-100 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $blog->content }}</textarea>
+                                    class="w-full bg-gray-50 bg-opacity-100 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $post->content }}</textarea>
+                            </div>
+                        </div>
+                        <div class="p-2 w-3/4 mx-auto">
+                            <div class="relative ">
+                                <label for="ski_resort_id" class="leading-7 text-lg text-gray-800">ゲレンデ：</label>
+                                <select name="ski_resort_id" id="ski_resort_id" class="rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 text-lg py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    @foreach ($ski_resorts as $ski_resort)
+                                    <option value="{{ $ski_resort->id}}">
+                                        {{ $ski_resort->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="p-2 w-3/4 mx-auto">

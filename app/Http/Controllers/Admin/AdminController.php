@@ -27,7 +27,7 @@ class AdminController extends Controller
 
     public function list()
     {
-        $users=User::select('id','name','email','created_at')->get();
+        $users=User::select('id','name','email','created_at')->orderBy('id', 'asc')->get();
 
         return view('admin.list',compact('users'));
     }
