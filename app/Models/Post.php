@@ -32,8 +32,4 @@ class Post extends Model
         return $this->belongsTo(SkiResort::class);
     }
 
-    public function like() 
-    {
-        return $this->hasMany(Like::class);
-    }
 }
