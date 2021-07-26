@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('記事投稿フォーム') }}
+            {{ __('投稿フォーム') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-16 ">
             <div class=" overflow-hidden shadow-xl rounded-xl">
                 <div class="px-2 py-4 bg-blue-50 border-b border-gray-200">
-                    <h2 class="w-3/4 sm:w-1/3  mx-auto  text-center  text-xl border-b-2 border-indigo-500">記事投稿フォーム</h2>
+                    <h2 class="w-3/4 sm:w-1/3  mx-auto  text-center  text-xl border-b-2 border-indigo-500">投稿フォーム</h2>
                     <form action="{{ route('user.store') }}" method="POST" onsubmit="return checkSubmit()" enctype="multipart/form-data">
                         @csrf
                         <div class="p-2 w-3/4 mx-auto">
@@ -26,6 +26,19 @@
                                     class="w-full bg-gray-50 bg-opacity-100 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                             </div>
                         </div>
+                        <div class="p-2 w-3/4 mx-auto">
+                            <div class="relative ">
+                                <label for="ski_resort_id" class="leading-7 text-lg text-gray-800">ゲレンデ：</label>
+                                <select name="ski_resort_id" id="ski_resort_id" class="rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 text-lg py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    @foreach ($ski_resorts as $ski_resort)
+                                    <option value="{{ $ski_resort->id}}">
+                                        {{ $ski_resort->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="p-2 w-3/4 mx-auto">
                             <div class="relative">
                                 <label for="image" class="leading-7 text-lg text-gray-800">画像</label>

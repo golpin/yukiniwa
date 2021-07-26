@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\SkiResort;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; 
@@ -35,9 +36,20 @@ class PostController extends Controller
         return view('guest.home',compact('posts'));//view側に変数postsを渡す
     }
 
+    public function mypost()
+    {
+
+        $posts = Post::where('user_id', Auth::id())->paginate(12);
+        //post9件で1ページとする
+        //dd($posts);
+
+        return view('user.mypost',compact('posts'));//view側に変数postsを渡す
+    }
+
     public function create()
     {
-        return view('user.create');
+        $ski_resorts = SkiResort::select('id', 'name')->get();
+        return view('user.create',compact('ski_resorts'));
     }
 
     public function store(PostRequest $request )
@@ -49,6 +61,7 @@ class PostController extends Controller
             $post->title = $request->input('title');
             $post->content = $request->input('content');
             $post->user_id = $user->id;//認証されているidをuser_idカラムに保存
+            $post->ski_resort_id = $request->input('ski_resort_id');
             if ($request->hasfile('image')) {//画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので要らない処理かも
                 $file = $request->file('image');
                 $extention = $file->getClientOriginalExtension();//元々の拡張子のみ取得
@@ -73,7 +86,8 @@ class PostController extends Controller
             \Session::flash('err_msg', 'データがありません。');
             return redirect(route('user.home'));
         }
-        return view('user.edit', ['post' => $post]);
+        $ski_resorts = SkiResort::select('id', 'name')->get();
+        return view('user.edit', compact('post','ski_resorts'));
 
     }
 
@@ -83,6 +97,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->input('title');
         $post->content = $request->input('content');
+        $post->ski_resort_id = $request->input('ski_resort_id');
 
         if ($request->hasfile('image')) {
             $path ='public/images/'.$post->image;

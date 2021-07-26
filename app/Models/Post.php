@@ -24,11 +24,16 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,);
+        return $this->belongsTo(User::class);
     }
 
     public function ski_resort()
     {
-        return $this->belongsTo(SkiResort::class,);
+        return $this->belongsTo(SkiResort::class);
+    }
+
+    public function like() 
+    {
+        return $this->hasMany(Like::class);
     }
 }
