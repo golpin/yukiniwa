@@ -9,7 +9,7 @@
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-6">
             <div class="overflow-hidden shadow-md rounded-lg mx-2">
-                <div class="p-4  bg-indigo-100 border-b border-gray-200">
+                <div class="p-2  bg-indigo-100 border-b border-gray-200">
                     @if (session('err_msg'))
                     <p class="bg-green-400 rounded-lg text-lg w-1/3 text-center mx-auto">
                         {{ session('err_msg') }}
@@ -18,13 +18,13 @@
 
                     {{--プロフィール内容--}}
                     <section class="text-gray-600 body-font">
-                        <div class="container mx-auto flex px-4 py-24 sm:flex-row sm:justify-between flex-col items-center">
-                            <div class="md:max-w-xl  w-1/2 mb-8 md:mb-0">
+                        <div class="w-full mx-auto flex px-4 py-24 sm:flex-row sm:justify-between flex-col items-center">
+                            <div class=" sm:w-1/2 mb-8 md:mb-0">
                                 @if (!is_null($profile))
-                                <img class="object-cover object-center rounded mx-auto"
+                                <img class="object-cover object-center rounded-full p-2 mx-auto lg:w-96 lg:h-96 w-64 h-64"
                                 src="{{ asset('storage/icons/'.$profile->icon) }}"  alt="content" >
                                 @else
-                                <img class="object-cover object-center rounded mx-auto"
+                                <img class="object-cover object-center rounded-full p-2 mx-auto w-96 h-96"
                                 src="{{ asset('storage/images/'.'no_image_logo.png') }}"  alt="content">
                                 @endif
                             </div>
@@ -72,7 +72,7 @@
                                             @csrf
                                             <button type="submit"
                                                 class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                                                プロフィールを設定
+                                                プロフィールを編集
                                                 <svg class="w-6 h-6 items-center" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
