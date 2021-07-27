@@ -19,6 +19,11 @@ Route::middleware('auth:users')->group(function () {
     Route::post('/update/{id}', [PostController::class, 'update'])->name('update');
 
     Route::get('/myprofile', [ProfileController::class, 'myprofile'])->name('profile.myprofile');
+    Route::get('/myprofile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/myprofile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/myprofile/create', [ProfileController::class, 'create'])->name('profile.create');
+    Route::post('/myprofile/store', [ProfileController::class, 'store'])->name('profile.store');
+
 });               
 
 
