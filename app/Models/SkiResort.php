@@ -22,4 +22,9 @@ class SkiResort extends Model
     {
         return $this->hasMany(Post::class,'ski_resort_id');
     }
+
+    public function profile()
+    {
+        return $this->hasMany(Profile::class,'ski_resort_id');
+    }
 }

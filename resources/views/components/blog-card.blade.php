@@ -11,7 +11,7 @@
     </h3>
 
     <p class="text-gray-600  text-md">
-            投稿者:{{ $post->user->name}}
+        投稿者:{{ $post->user->name}}
     </p>
     <p class="text-gray-600  text-md">
         ゲレンデ:{{ $post->ski_resort->name}}

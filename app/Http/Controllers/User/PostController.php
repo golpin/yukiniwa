@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function home(Post $post)
+    public function home()
     {
 
         $posts = Post::paginate(12);
