@@ -10,9 +10,13 @@
         {{ $post->title}}
     </h3>
 
-    <p class="text-gray-600  text-md">
-        投稿者:{{ $post->user->name}}
-    </p>
+    <div class="flex flex-row">
+        <p class="text-gray-600  text-lg">投稿者:{{ $post->user->name}}</p>
+        @if ($post->user->profile)
+            <img src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="" class="w-8 h-8 rounded-full items-center justify-center">
+        @endif
+    </div>
+    
     <p class="text-gray-600  text-md">
         ゲレンデ:{{ $post->ski_resort->name}}
     </p>
