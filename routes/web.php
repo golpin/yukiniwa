@@ -23,7 +23,6 @@ Route::middleware('auth:users')->group(function () {
     Route::post('/myprofile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/myprofile/create', [ProfileController::class, 'create'])->name('profile.create');
     Route::post('/myprofile/store', [ProfileController::class, 'store'])->name('profile.store');
-
 });               
 
 

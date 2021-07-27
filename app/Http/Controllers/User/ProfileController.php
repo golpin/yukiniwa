@@ -8,8 +8,9 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Models\SkiResort;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage; 
 
 class ProfileController extends Controller
 {
@@ -30,7 +31,7 @@ class ProfileController extends Controller
         return view('user.profile.create',compact('ski_resorts','user'));
     }
 
-    public function store(Request $request )
+    public function store(ProfileRequest $request )
     {
 
         $user = User::findOrFail(Auth::id());
@@ -41,7 +42,7 @@ class ProfileController extends Controller
             $profile->ski_resort_id = $request->input('ski_resort_id');
             if ($request->hasfile('icon')) {//画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので要らない処理かも
                 $file = $request->file('icon');
-                $extention = $file->getClientOriginalExtension();//元々の拡張子のみ取得
+                $extention = $file->getClientOriginalExtension();//拡張子を取得
                 $filename = time() . '.' . $extention;//現在の時間と拡張子をくっつける
                 $file->storeAs('public/icons',$filename); //画像はpublicを経由してstorage/app/public/imagesに保存
                 $profile->icon = $filename;//imageカラムにファイル名を保存
@@ -52,22 +53,24 @@ class ProfileController extends Controller
             throw $e;
         }
 
-        \Session::flash('err_msg', '記事を登録しました');//(session('err_msg'))に第2引数の値を渡す
+        \Session::flash('err_msg', 'プロフィールを更新しました');//(session('err_msg'))に第2引数の値を渡す
         return redirect()->route('user.profile.myprofile');
     }
 
     public function edit($id)
     {
+        $user = User::where('id',Auth::user()->id)->first();
         $profile = Profile::findOrFail($id);
         if (is_null($profile)) {
-            \Session::flash('err_msg', 'データがありません。');
+            \Session::flash('err_msg', 'プロフィールがありません。');
             return redirect(route('user.home'));
         }
         $ski_resorts = SkiResort::select('id', 'name')->get();
-        return view('user.profile.edit', compact('profile','ski_resorts'));
+
+        return view('user.profile.edit', compact('profile','ski_resorts','user'));
     }
 
-    public function update(Request $request,  $id)
+    public function update(ProfileRequest $request,  $id)
     {
         $profile = Profile::findOrFail($id);
         $profile->user->name = $request->input('name');
@@ -75,22 +78,22 @@ class ProfileController extends Controller
         $profile->ski_resort_id = $request->input('ski_resort_id');
 
         if ($request->hasfile('icon')) {
-            $path ='public/icons/'.$profile->image;
+            $path ='public/icons/'.$profile->icon;
             if(Storage::exists($path))
             {
                 Storage::delete($path);
             }
             //既存のファイルを削除する
-            $file = $request->file('image');
+            $file = $request->file('icon');
             $extention = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extention;
             $file->storeAs('public/icons',$filename);
-            $profile->image = $filename;
+            $profile->icon = $filename;
         }
         $profile->update();
 
 
-        \Session::flash('err_msg', 'ブログを更新しました');
+        \Session::flash('err_msg', 'プロフィールを更新しました');
 
         return redirect()->route('user.profile.myprofile');
     }

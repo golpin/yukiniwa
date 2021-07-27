@@ -63,6 +63,7 @@ class PostController extends Controller
             $post->content = $request->input('content');
             $post->user_id = $user->id;//認証されているidをuser_idカラムに保存
             $post->ski_resort_id = $request->input('ski_resort_id');
+            $post->created_at = now();
             if ($request->hasfile('image')) {//画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので要らない処理かも
                 $file = $request->file('image');
                 $extention = $file->getClientOriginalExtension();//元々の拡張子のみ取得
@@ -99,6 +100,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->ski_resort_id = $request->input('ski_resort_id');
+        $post-> $post->updated_at = now();
 
         if ($request->hasfile('image')) {
             $path ='public/images/'.$post->image;
