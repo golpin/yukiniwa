@@ -39,20 +39,20 @@
                         <div class="p-2 w-3/4 mx-auto">
                             <div class="relative">
                                 <label for="icon" class="leading-7 text-lg text-gray-800">アイコン</label>
-                                <input type="file" name="icon" id="icon" 
+                                <input type="file" name="icon" id="icon"  accept="image/jpg,image/jpeg,image/png" 
                                     class="w-full bg-gray-50 bg-opacity-100 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 <p>拡張子はjpg・jpeg・png限定。ファイルサイズの上限は10MB</p>
                             </div>
                         </div>
                         <div class="p-2 w-full flex justify-around mt-4">
-                            <button type="button" onclick="location.href='{{--{{ route('owner.products.index') }}--}}'"
-                                class="flex place-items-center bg-white border-4 py-2 px-2 focus:outline-none hover:bg-gray-400 rounded-lg text-md"><svg
-                                    class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>戻る</button>
+                            <a href="{{ route('user.profile.myprofile')}}">
+                            <button type="button"  class="flex place-items-center bg-white border-4 py-2 px-2 focus:outline-none hover:bg-gray-400 rounded-lg text-md">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                戻る
+                            </button>
+                            </a>
                             <button type="submit"
                                 class="flex place-items-center text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded-lg text-lg">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"

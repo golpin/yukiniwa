@@ -18,13 +18,20 @@
 
                     {{--プロフィール内容--}}
                     <section class="text-gray-600 body-font">
-                        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                            <div class="lg:max-w-xl lg:w-full md:w-1/2 w-5/6 mb-8 md:mb-0">
-                                <img class="object-cover object-center rounded" alt="hero"
-                                    src="https://dummyimage.com/720x600">
+                        <div class="container mx-auto flex px-4 py-24 sm:flex-row sm:justify-between flex-col items-center">
+                            <div class="md:max-w-xl  w-1/2 mb-8 md:mb-0">
+                                @if (!is_null($profile))
+                                <img class="object-cover object-center rounded mx-auto"
+                                src="{{ asset('storage/icons/'.$profile->icon) }}"  alt="content" >
+                                @else
+                                <img class="object-cover object-center rounded mx-auto"
+                                src="{{ asset('storage/images/'.'no_image_logo.png') }}"  alt="content">
+                                @endif
                             </div>
+                            
+                            
                             <div
-                                class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+                                class=" md:w-1/2  flex flex-col  md:text-left items-center text-center mx-auto">
                                 <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                                     {{ $user->name }}
                                 </h2>
@@ -47,11 +54,10 @@
                                     @if (!is_null($profile))
                                     <form action="{{ route('user.profile.edit',$profile->id) }}" method="GET">
                                         <div class="flex flex-row-reverse">
-                                            @csrf
                                             <button type="submit"
                                                 class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                                                 プロフィールを編集
-                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                                <svg class="w-6 h-6 items-center" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -67,7 +73,7 @@
                                             <button type="submit"
                                                 class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                                                 プロフィールを設定
-                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                                <svg class="w-6 h-6 items-center" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -81,8 +87,6 @@
                             </div>
                     </section>
                     {{--プロフィール内容ここまで--}}
-
-
                 </div>
             </div>
         </div>
