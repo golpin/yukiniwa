@@ -4,7 +4,7 @@
     x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300"
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="profileModal = !profileModal">
     <!-- Modal -->
-    <div x-show="profileModal" class="bg-white rounded-xl shadow-2xl p-6 w-full sm:w-2/3 mx-10"
+    <div x-show="profileModal" class="bg-white rounded-xl shadow-2xl p-6 w-3/4 md:w-1/2 mx-10"
         @click.away="profileModal = false" x-transition:enter="transition ease duration-100 transform"
         x-transition:enter-start="opacity-0 scale-90 translate-y-1"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -27,25 +27,32 @@
                 {{ $post->user->name }}
             </h2>
             @if ($post->user->profile)
-
-            <p class="mb-4 leading-relaxed text-xl">
-                お気に入りのスキー場
-            </p>
-            <p class="mb-4 leading-relaxed text-xl">
-                {{ $post->user->profile->ski_resort->name }}
-
-
+            <div>
+                <p class="mb-4 leading-relaxed text-xl">
+                    お気に入りのスキー場
+                </p>
+                <p class="mb-4 leading-relaxed text-xl">
+                    {{ $post->user->profile->ski_resort->name }}
+                </p>
+            </div>
+            <div>
                 <p class="mb-4 leading-relaxed text-xl">
                     自己紹介文:{{ $post->user->profile->content }}
                 </p>
-                @else
                 <p class="mb-4 leading-relaxed text-xl">
-                    お気に入りのスキー場：まだ登録されていません
+                    自己紹介文:{{ $post->user->profile->content }}
                 </p>
-                <p class="mb-4 leading-relaxed text-xl">
-                    自己紹介:まだ登録されていません
-                    @endif
-                </p>
+            </div>
+
+
+            @else
+            <p class="mb-4 leading-relaxed text-xl">
+                お気に入りのスキー場：まだ登録されていません
+            </p>
+            <p class="mb-4 leading-relaxed text-xl">
+                自己紹介:まだ登録されていません
+                @endif
+            </p>
         </div>
     </div>
 </div>
