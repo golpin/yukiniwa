@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="max-w-7xl mx-auto sm:px-2 lg:px-6">
+        <div class="max-w-7xl mx-auto sm:px-2 lg:px-14">
             <div class="overflow-hidden shadow-md rounded-lg mx-2">
                 <div class="p-2  bg-indigo-100 border-b border-gray-200">
                     @if (session('err_msg'))
@@ -19,12 +19,12 @@
                     {{--プロフィール内容--}}
                     <section class="text-gray-600 body-font">
                         <div class="w-full mx-auto flex px-4 py-24 sm:flex-row sm:justify-between flex-col items-center">
-                            <div class="w-full  sm:w-1/2 mb-8 md:mb-0">
+                            <div class="w-full  sm:w-1/2 mb-8 md:mb-0 ">
                                 @if (!is_null($profile))
-                                <img class="object-cover object-center rounded-full p-2 mx-auto lg:w-96 lg:h-96 w-64 h-64"
+                                <img class="object-cover object-center rounded-full p-2 mx-auto lg:w-96 lg:h-96 w-64 h-64 bg-white"
                                 src="{{ asset('storage/icons/'.$profile->icon) }}"  alt="content" >
                                 @else
-                                <img class="object-cover object-center rounded-full p-2 mx-auto w-96 h-96"
+                                <img class="object-cover object-center rounded-full p-2 mx-auto lg:w-96 lg:h-96 w-64 h-64"
                                 src="{{ asset('storage/images/'.'no_image_logo.png') }}"  alt="content">
                                 @endif
                             </div>
@@ -36,11 +36,17 @@
                                     {{ $user->name }}
                                 </h2>
                                 @if ($profile){{--認証されたユーザーのidと一致するprofilesテーブルのuser_id--}}
-                                <p class="mb-4 leading-relaxed text-xl">
-                                    お気に入りのスキー場：{{ $profile->ski_resort->name }}
+                                <p class="mb-2 leading-relaxed text-md">
+                                    お気に入りのスキー場
                                 </p>
-                                <p class="mb-8 leading-relaxed text-xl">
-                                    自己紹介文:{{ $profile->content }}
+                                <p class="mb-4 leading-relaxed text-xl">
+                                    {{ $profile->ski_resort->name }}
+                                </p>
+                                <p class="mb-2 leading-relaxed text-md">
+                                    プロフィール
+                                </p>
+                                <p class="mb-2 leading-relaxed text-lg">
+                                    {{ $profile->content }}
                                 </p>
                                 @else
                                 <p class="mb-4 leading-relaxed text-xl">
