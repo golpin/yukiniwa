@@ -19,7 +19,7 @@
                     {{--プロフィール内容--}}
                     <section class="text-gray-600 body-font">
                         <div class="w-full mx-auto flex px-4 py-24 sm:flex-row sm:justify-between flex-col items-center">
-                            <div class=" sm:w-1/2 mb-8 md:mb-0">
+                            <div class="w-full  sm:w-1/2 mb-8 md:mb-0">
                                 @if (!is_null($profile))
                                 <img class="object-cover object-center rounded-full p-2 mx-auto lg:w-96 lg:h-96 w-64 h-64"
                                 src="{{ asset('storage/icons/'.$profile->icon) }}"  alt="content" >
