@@ -16,14 +16,13 @@
                     </p>
                     @endif
 
-                        <div class="flex  justify-items-center flex-wrap px-auto">
+                        <div class="flex justify-items-center flex-wrap mx-auto object-center">
                             @foreach ($posts as $post)
-                                <div class="p-2 md:w-1/2 lg:w-1/3 flex flex-wrap ">
+                                <div class="p-2 w-full sm:w-1/2 lg:w-1/3 flex flex-wrap ">
                                     <x-blog-card  :post="$post" />
                                 </div>
                             @endforeach
                         </div>
-
                     {{ $posts->links() }}
                 </div>
             </div>
