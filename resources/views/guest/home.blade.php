@@ -8,7 +8,7 @@
     <div class="py-10">
         <div class="mx-auto max-w-7xl sm:px-2 lg:px-6">
             <div class="mx-2 overflow-hidden rounded-lg shadow-md">
-                <div class="p-4 border-b2order-gray-200 bg-blue-420">
+                <div class="p-4 bg-blue-200 border-b border-gray-200">
                     @if (session('err_msg'))
                     <p class="w-1/3 mx-auto text-lg text-center bg-green-400 rounded-lg">
                         {{ session('err_msg') }}

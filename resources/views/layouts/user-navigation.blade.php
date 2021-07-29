@@ -8,7 +8,7 @@
                     <a href="{{ route('user.home') }}">
                         <x-yukiniwa-logo class="block w-auto h-12 text-gray-600 fill-current" />
                     </a>
-                    <h1 class="text-xl antialiased tracking-tighter text-blue-400">
+                    <h1 class="text-xl antialiased tracking-wider text-blue-400">
                         -YUKINIWA-
                     </h1>
                 </div>

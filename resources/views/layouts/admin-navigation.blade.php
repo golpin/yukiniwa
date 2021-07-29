@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('admin.home') }}">
-                        <x-application-logo class="block w-auto h-10 text-gray-600 fill-current" />
+                        <x-yukiniwa-logo class="block w-auto h-10 text-gray-600 fill-current" />
                     </a>
                     <h1 class="text-xl antialiased tracking-tighter text-blue-400">
                         -YUKINIWA-
