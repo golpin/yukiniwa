@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
 
-        $posts = Post::paginate(12);
+        $posts = Post::sortBy($request->sort)
+        ->paginate(12);
+        //sortByはローカルスコープです。可変する並び順を提供
 
 
         //post9件で1ページとする
