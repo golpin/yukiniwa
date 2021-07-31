@@ -6,8 +6,9 @@ use App\Http\Controllers\User\ProfileController;
 
 
 //全てのユーザー
-Route::get('/', [PostController::class, 'guest'])->name('guest');
+Route::get('/', [PostController::class, 'guest'])->name('guest');//初期表示場所
 //Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
 //認証されたユーザーのみ
 Route::middleware('auth:users')->group(function () {
     Route::get('/home', [PostController::class, 'home'])->name('home');

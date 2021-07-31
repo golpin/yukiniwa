@@ -16,13 +16,13 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body　class="font-sans antialiased">
+    <body　class="font-sans antialiased ">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.guest-navigation')
             <!-- Page Heading -->
 
             <header class="bg-white shadow-md">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 border-double border-b-2">
+                <div class="px-4 py-6 mx-auto border-b-2 border-double max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>

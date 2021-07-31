@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="sticky bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -8,7 +8,7 @@
                     <a href="{{ route('user.home') }}">
                         <x-yukiniwa-logo class="block w-auto h-12 text-gray-600 fill-current" />
                     </a>
-                    <h1 class="text-xl antialiased tracking-tighter text-blue-400">
+                    <h1 class="text-xl antialiased tracking-wider text-blue-400">
                         -YUKINIWA-
                     </h1>
                 </div>

@@ -26,19 +26,20 @@ use GuzzleHttp\Middleware;
 //});
 
 
-Route::get('/', [AdminController::class, 'home'])
-                ->middleware(['auth:admin'])
-                ->name('home');
-Route::get('/list', [AdminController::class, 'list'])
-                ->middleware(['auth:admin'])
-                ->name('list');
-Route::post('/delete/{id}',[AdminController::class, 'delete'])
-                ->middleware(['auth:admin'])
-                ->name('delete');
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/', [AdminController::class, 'home'])->name('home');//管理者用ホーム画面
+    Route::get('/list', [AdminController::class, 'list'])->name('list');//ユーザー一覧
+    Route::post('/delete/{id}',[AdminController::class, 'delete'])->name('delete');//ユーザー削除
+    //↓スキー場関連を記述していく
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin'])->name('dashboard');
+});
+
+
+
+
+//Route::get('/dashboard', function () {
+//    return view('admin.dashboard');
+//})->middleware(['auth:admin'])->name('dashboard');
 
 //Route::get('/register', [RegisteredUserController::class, 'create'])
 //                ->middleware('guest')
