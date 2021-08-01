@@ -67,8 +67,22 @@ class Post extends Model
     }
     public function scopeSortByKeyword($query , $keyword)
     {
+        
         if (!is_null($keyword)) {
-            return;
+            //全角スペースを半角に変換
+            $spaceConvert = mb_convert_kana($keyword, 's');
+
+            //単語を半角スペースで区切り、配列にする
+            $keywords = preg_split('/[\s]+/', $spaceConvert, -1, PREG_SPLIT_NO_EMPTY);
+
+            //単語をループで回す
+            foreach ($keywords as $word) {
+                $query->join('users', 'users.id', '=', 'posts.user_id')
+                ->where('posts.title', 'like', '%' . $word . '%')
+                ->orWhere('posts.content', 'like', '%' . $word . '%')
+                ->orWhere('users.name', 'like', '%' . $word . '%');
+            }
+            return $query;
         } else {
             return;
         }
