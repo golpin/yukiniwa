@@ -18,15 +18,17 @@ class PostController extends Controller
     public function home(Request $request)
     {
 
-        $posts = Post::sortBy($request->sort)
+        $posts = Post::sortBySkiResort($request->ski_resort ?? '0')//スキー場による検索
+        ->sortByKeyword($request->keyword)//キーワード検索
+        ->sortBy($request->sort)//作成日によるソート
         ->paginate(12);
-        //sortByはローカルスコープです。可変する並び順を提供
+        $ski_resorts = SkiResort::all();
 
 
         //post9件で1ページとする
         //dd($posts);
 
-        return view('user.home',compact('posts'));//view側に変数postsを渡す
+        return view('user.home',compact('posts','ski_resorts'));//view側に変数postsを渡す
     }
 
     public function guest()

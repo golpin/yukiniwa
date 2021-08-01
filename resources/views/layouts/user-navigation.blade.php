@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
     <!-- Primary Navigation Menu -->
-    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="px-4 mx-auto max-w-7xl sm:px-2 lg:px-4">
         <div class="flex justify-between h-16">
             <div class="flex antialiased">
                 <!-- Logo -->
@@ -15,22 +15,22 @@
 
                 <!-- Navigation Links -->
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('user.home')" :active="request()->routeIs('user.home')">
                         {{ __('ホーム') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('user.create')" :active="request()->routeIs('user.create')">
                         {{ __('投稿する') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('user.mypost')" :active="request()->routeIs('user.mypost')">
                         {{ __('あなたの投稿') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('user.profile.myprofile')" :active="request()->routeIs('user.profile.myprofile')">
                         {{ __('プロフィール') }}
                     </x-nav-link>
