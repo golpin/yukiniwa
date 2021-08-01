@@ -20,7 +20,7 @@
                         <div class="flex flex-col items-center w-full px-4 py-24 mx-auto sm:flex-row sm:justify-between">
                             <div class="w-full mb-8 sm:w-1/2 md:mb-0 ">
                                 @if (!is_null($profile))
-                                <img class="object-cover object-center w-64 h-64 p-2 mx-auto bg-white rounded-full lg:w-96 lg:h-96"
+                                <img class="object-cover object-center w-64 h-64 p-2 mx-auto bg-white border-4 rounded-full lg:w-96 lg:h-96"
                                 src="{{ asset('storage/icons/'.$profile->icon) }}"  alt="content" >
                                 @else
                                 <img class="object-cover object-center w-64 h-64 p-2 mx-auto rounded-full lg:w-96 lg:h-96"

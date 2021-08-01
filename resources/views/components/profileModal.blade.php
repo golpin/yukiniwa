@@ -14,10 +14,10 @@
 
         <div class="mx-auto mb-4 sm:w-1/2">
             @if (!is_null($post->user->profile))
-            <img class="object-cover object-center w-48 h-48 p-2 mx-auto rounded-full lg:w-80 lg:h-80"
+            <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
                 src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="content">
             @else
-            <img class="object-cover object-center w-48 h-48 p-2 mx-auto rounded-full"
+            <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full"
                 src="{{ asset('storage/images/'.'no_image_logo.png') }}" alt="content">
             @endif
         </div>
