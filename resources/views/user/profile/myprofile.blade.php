@@ -47,6 +47,7 @@
                                 <p class="mb-2 text-lg leading-relaxed">
                                     {{ $profile->content }}
                                 </p>
+                                
                                 @else
                                 <p class="mb-4 text-xl leading-relaxed">
                                     お気に入りのスキー場：まだ登録されていません

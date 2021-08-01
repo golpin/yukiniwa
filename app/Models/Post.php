@@ -56,5 +56,23 @@ class Post extends Model
             return $query->orderBy('posts.created_at', 'asc');
         }
     }
+    public function scopeSortBySkiResort($query , $ski_resort)
+    {
+        if ($ski_resort !== '0') {
+            return $query->where('posts.ski_resort_id', $ski_resort);
+        } else {
+            return;
+        }
+        
+    }
+    public function scopeSortByKeyword($query , $keyword)
+    {
+        if (!is_null($keyword)) {
+            return;
+        } else {
+            return;
+        }
+        
+    }
 
 }
