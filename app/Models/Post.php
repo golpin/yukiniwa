@@ -42,6 +42,11 @@ class Post extends Model
     //    $query->orderBy('created_at','asc');
     //}
 
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function scopeSortBy($query , $sortBy)
     //$request->sortからの値を$sortByで取り出す
     {

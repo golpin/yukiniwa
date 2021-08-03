@@ -15,17 +15,20 @@
                         {{ session('err_msg') }}
                     </p>
                     @endif
-                        <div class="flex flex-wrap object-center justify-items-center px-auto">
-                            @foreach ($posts as $post)
-                                <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
-                                    <x-blog-card  :post="$post" />
-                                </div>
-                            @endforeach
+                    <div class="flex flex-wrap object-center justify-items-center px-auto">
+                        @foreach ($posts as $post)
+
+
+                        <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
+                            <x-blog-card :post="$post"  />
                         </div>
+
+                        @endforeach
+
+                    </div>
                     {{ $posts->links() }}
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
-

@@ -8,33 +8,51 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\SkiResort;
 use App\Models\User;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\DB;
 
 
+
 class PostController extends Controller
 {
-    public function home(Request $request)
+    public function home(Request $request, )
     {
 
         $posts = Post::sortBySkiResort($request->ski_resort ?? '0')//スキー場による検索
         ->sortByKeyword($request->keyword)//キーワード検索
         ->sortBy($request->sort)//作成日によるソート
         ->paginate(12);
+
         $ski_resorts = SkiResort::all();
 
+        //$likes = Like::all();
 
+        //$like = Like::join('posts','posts.id','=','likes.post_id')
+        //->where('post_id','posts.id')
+        //->where('user_id',Auth::user()->id);
+        //$like = Like::join('posts','posts.id','=','likes.post_id')
+        //->where('post_id','posts.id')
+        //->where('user_id',Auth::user()->id);
+        //dd($like);
+        //foreach($likes as $like)
+        //{
+        //    dd($like)
+        //}
+        
         //post9件で1ページとする
         //dd($posts);
 
-        return view('user.home',compact('posts','ski_resorts'));//view側に変数postsを渡す
+        return view('user.home',compact('posts','ski_resorts',));
     }
 
     public function guest()
     {
 
         $posts = Post::paginate(12);
+        
+        //$like = Like::all();
         //post9件で1ページとする
         //dd($posts);
 
@@ -45,6 +63,8 @@ class PostController extends Controller
     {
 
         $posts = Post::where('user_id', Auth::id())->paginate(12);
+        
+        //$like = Like::all();
         //post9件で1ページとする
         //dd($posts);
 
@@ -143,5 +163,19 @@ class PostController extends Controller
         \Session::flash('err_msg', '削除しました。');
         return redirect(route('user.home'));
         }
+    }
+
+    public function like(Post $post, Request $request){
+        $like = new Like();
+        $like->post_id=$post->id;
+        $like->user_id=Auth::user()->id;
+        $like->save();
+        return back();
+    }
+
+    public function unlike(Post $post, Request $request){
+        $like=Like::where('post_id', $post->id)->where('user_id',Auth::user()->id)->first();
+        $like->delete();
+        return back();
     }
 }
