@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -48,6 +49,11 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class);
     }
 
 }

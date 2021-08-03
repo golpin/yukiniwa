@@ -15,9 +15,9 @@
 
 
     <div>
-        <h3 class="overflow-hidden text-lg font-medium text-indigo-500 overflow-ellipsis">
+        <p class="overflow-hidden text-lg font-medium text-indigo-500 overflow-ellipsis">
             {{ $post->title}}{{--タイトルを表示--}}
-        </h3>
+        </p>
         <div class="flex flex-row" @click="profileModal = !profileModal">
             <p class="my-auto text-lg text-gray-600">投稿者:{{ $post->user->name}}</p>
             {{--ユーザー名を表示--}}
@@ -32,10 +32,55 @@
             ゲレンデ:{{ $post->ski_resort->name}}
             {{--posts.ski_resort_idと一致するidのski_resorts.nameを表示--}}
         </p>
-        <p class="text-sm text-gray-600">
-            投稿日:{{ $post->created_at->format('Y-m-d')}}
-            {{--投稿日の表示--}}
-        </p>
+        <div class="flex justify-between">
+            <p class="text-sm text-gray-600">
+                投稿日:{{ $post->created_at->format('Y-m-d')}}
+                {{--投稿日の表示--}}
+            </p>
+            {{--
+            @if ($post->id == $like->post_id && Auth::user()->id == $like->user_id)
+            @else
+            @endif
+            --}}
+            <form action="{{ route('user.unlike', $post) }}" method="POST">
+                @csrf
+                <button type="submit">
+                    <svg class="w-6 h-6 mr-6 text-pink-500 fill-current " fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </button>
+            </form>
+
+            <form action="{{ route('user.like', $post) }}" method="POST">
+                @csrf
+                @if (Auth::user())
+                <button type="submit">
+                    <svg class="w-6 h-6 mr-6 text-gray-400 fill-current" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </button>
+                @else
+                <button type="button">
+                    <svg class="w-6 h-6 mr-6 text-green-400 fill-current" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </button>
+                @endif
+
+            </form>
+
+
+        </div>
+
     </div>
     {{--showModalの中身--}}
     <x-showModal :post="$post" />

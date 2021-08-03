@@ -8,9 +8,9 @@
                     <a href="{{ route('admin.home') }}">
                         <x-yukiniwa-logo class="block w-auto h-10 text-gray-600 fill-current" />
                     </a>
-                    <h1 class="text-xl antialiased tracking-tighter text-blue-400">
+                    <h2 class="text-xl antialiased tracking-tighter text-blue-400">
                         -YUKINIWA-
-                    </h1>
+                    </h2>
                 </div>
 
                 <!-- Navigation Links -->
