@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function home(Request $request, )
+    public function home(Request $request )
     {
 
-        $posts = Post::sortBySkiResort($request->ski_resort ?? '0')//スキー場による検索
+        $posts = Post::with('ski_resort','user')
+        ->sortBySkiResort($request->ski_resort ?? '0')//スキー場による検索
         ->sortByKeyword($request->keyword)//キーワード検索
         ->sortBy($request->sort)//作成日によるソート
         ->paginate(12);
@@ -29,46 +30,47 @@ class PostController extends Controller
 
         //$likes = Like::all();
 
-        //$like = Like::join('posts','posts.id','=','likes.post_id')
-        //->where('post_id','posts.id')
-        //->where('user_id',Auth::user()->id);
-        //$like = Like::join('posts','posts.id','=','likes.post_id')
-        //->where('post_id','posts.id')
-        //->where('user_id',Auth::user()->id);
-        //dd($like);
-        //foreach($likes as $like)
-        //{
-        //    dd($like)
-        //}
-        
-        //post9件で1ページとする
-        //dd($posts);
+        $likes = Like::where('user_id',Auth::user()->id)
+        ->get();
+        //dd($likes);
 
-        return view('user.home',compact('posts','ski_resorts',));
+
+        return view('user.home',compact('posts','ski_resorts','likes'));
     }
 
-    public function guest()
+    public function guest(Request $request)
     {
 
-        $posts = Post::paginate(12);
+        $posts = Post::with('ski_resort','user')
+        ->sortBySkiResort($request->ski_resort ?? '0')//スキー場による検索
+        ->sortByKeyword($request->keyword)//キーワード検索
+        ->sortBy($request->sort)//作成日によるソート
+        ->paginate(12);
+
+        $ski_resorts = SkiResort::all();
+
         
         //$like = Like::all();
         //post9件で1ページとする
         //dd($posts);
 
-        return view('guest.home',compact('posts'));//view側に変数postsを渡す
+        return view('guest.home',compact('posts','ski_resorts'));//view側に変数postsを渡す
     }
 
     public function mypost()
     {
 
-        $posts = Post::where('user_id', Auth::id())->paginate(12);
+        $posts = Post::with('ski_resort','user')
+        ->where('user_id', Auth::id())->paginate(12);
+
+        $likes = Like::where('user_id',Auth::user()->id)
+        ->get();
         
         //$like = Like::all();
         //post9件で1ページとする
         //dd($posts);
 
-        return view('user.mypost',compact('posts'));//view側に変数postsを渡す
+        return view('user.mypost',compact('posts','likes'));//view側に変数postsを渡す
     }
 
     public function create()
