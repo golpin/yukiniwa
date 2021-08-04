@@ -68,13 +68,12 @@
                     <div class="flex flex-wrap object-center mx-auto justify-items-center">
                         @foreach ($posts as $post)
                         <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
-                            <x-blog-card :post="$post"  />
+                            <x-blog-card :post="$post" :likes="$likes" />
+                                
                         </div>
                         @endforeach
                     </div>
-                    {{ $posts->appends([
-                        'sort'=> \Request::get('sort'),
-                    ])->links() }}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
