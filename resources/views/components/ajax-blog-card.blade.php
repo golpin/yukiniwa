@@ -40,8 +40,10 @@
 
             <div class="flex">
                 @if( $likes->where('post_id',$post->id)->first() )
-                <form action="{{ route('user.unlike', $post) }}" method="POST">
+                <form action="{{ route('user.unlike', $post) }}" method="POST" x-data="likeForm()">
                     @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}" x-model="formData.post_id">
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" x-model="formData.user_id">
                     <button type="submit">
                         <svg class="w-6 h-6 mr-2 text-pink-500 fill-current " fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -70,8 +72,25 @@
             </div>
         </div>
     </div>
-    {{--showModalの中身--}}
-    <x-showModal :post="$post" />
-    {{--profileModalの中身--}}
-    <x-profileModal :post="$post" />
+
+
+    <script>
+        function likeForm(){
+            return {
+                formData:{
+                    post_id:'',
+                    user_id:'',
+                },
+
+                submitData() {
+
+			        fetch({{ route('user.like', $post) }}, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.formData)
+                    })
+		        }
+            }
+        }
+    </script>
 </div>
