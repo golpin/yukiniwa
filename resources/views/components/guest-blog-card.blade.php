@@ -38,7 +38,7 @@
                 {{--投稿日の表示--}}
             </p>
 
-            <div>
+            <div class="flex">
                 <button type="button">
                     <svg class="w-6 h-6 mr-2 text-yellow-500 fill-current" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -47,6 +47,9 @@
                         </path>
                     </svg>
                 </button>
+                <span>
+                    {{$post->like->count()}}
+                </span>
             </div>
         </div>
     </div>

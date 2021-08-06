@@ -69,7 +69,7 @@
                         @foreach ($posts as $post)
                         <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
                             <x-blog-card :post="$post" :likes="$likes" />
-                                
+
                         </div>
                         @endforeach
                     </div>
@@ -91,4 +91,5 @@
             this.form.submit()
         })
     </script>
+
 </x-app-layout>
