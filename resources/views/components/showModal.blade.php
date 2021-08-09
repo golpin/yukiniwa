@@ -1,12 +1,12 @@
 
 <!-- Modal Background -->
 <div x-show="showModal"
-    class="fixed flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0"
+    class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-40"
     x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300"
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="showModal = !showModal">
     <!-- Modal -->
-    <div x-show="showModal" class="bg-white rounded-xl shadow-2xl py-6 px-2 w-3/4 md:w-1/2 mx-10" @click.away="showModal = false"
+    <div x-show="showModal" class="w-3/4 px-2 py-6 mx-10 bg-white shadow-2xl rounded-xl md:w-1/2" @click.away="showModal = false"
         x-transition:enter="transition ease duration-100 transform"
         x-transition:enter-start="opacity-0 scale-90 translate-y-1"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -15,27 +15,27 @@
         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
         <!--image -->
         @if (!is_null($post->image))
-        <img class="h-60 sm:h-80 rounded object-center mx-auto" src="{{ asset('storage/images/'.$post->image) }}" alt="content">
+        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ asset('storage/images/'.$post->image) }}" alt="content">
         @else
-        <img class="h-60 sm:h-80  rounded object-center  mx-auto" src="{{ asset('storage/images/'.'no_image_logo.png') }}"
+        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ asset('storage/images/'.'no_image_logo.png') }}"
             alt="content">
         @endif
         <!-- Title -->
-        <h2 class="px-4 my-2 text-gray-800 text-2xl font-medium text-center">{{ $post->title}}</h2>
+        <h2 class="px-4 my-2 text-2xl font-medium text-center text-gray-800">{{ $post->title}}</h2>
         <!-- content 🍺 -->
-        <p class="px-4 mb-4 text-md text-gray-900 font-medium title-font ">
+        <p class="px-4 mb-4 font-medium text-gray-900 text-md title-font ">
             {{ $post->content}}
         </p>
 
 
         <!-- Buttons -->
-        <div class="flex justify-between bt-2 w-1/2 mx-auto">
+        <div class="flex justify-between w-1/2 mx-auto bt-2">
             @if($post->user_id == Auth::id())
             <form action="{{ route('user.edit',$post->id) }}" method="GET">
                 <div class="flex flex-row-reverse">
                     @csrf
                     <button type="submit"
-                        class="focus:outline-none text-white text-sm py-2 px-2 mr-1 rounded-lg bg-yellow-400 hover:bg-yellow-500 hover:shadow-lg flex items-center">
+                        class="flex items-center px-2 py-2 mr-1 text-sm text-white bg-yellow-400 rounded-lg focus:outline-none hover:bg-yellow-500 hover:shadow-lg">
                         更新
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -50,7 +50,7 @@
                 <div class="flex flex-row-reverse">
                     @csrf
                     <button type="submit"
-                        class="focus:outline-none text-white text-sm py-2 px-2 rounded-lg bg-red-500 hover:bg-red-600 hover:shadow-lg flex items-center">
+                        class="flex items-center px-2 py-2 text-sm text-white bg-red-500 rounded-lg focus:outline-none hover:bg-red-600 hover:shadow-lg">
                         削除
                         <svg class="w-4 h-4 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">

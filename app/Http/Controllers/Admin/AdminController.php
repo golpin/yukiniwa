@@ -7,6 +7,8 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\SkiResort;
+use App\Models\Like;
 
 class AdminController extends Controller
 {
@@ -15,17 +17,21 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home(Request $request)
     {
-        $posts = Post::paginate(12);
+        $posts = Post::with(['ski_resort', 'user'])
+            ->sortBySkiResort($request->ski_resort ?? '0') //スキー場による検索
+            ->sortByKeyword($request->keyword) //キーワード検索
+            ->sortBy($request->sort) //作成日によるソート
+            ->paginate(20);
 
-        //blog9件で1ページとする
-        //dd($blogs);
+        $ski_resorts = SkiResort::all();
 
-        return view('admin.home',compact('posts'));//view側に変数blogsを渡す
+
+        return view('admin.home',compact('posts', 'ski_resorts'));
     }
 
-    public function list()
+    public function userList()
     {
         $users=User::select('id','name','email','created_at')->orderBy('id', 'asc')->get();
 
@@ -38,7 +44,7 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function userDelete($id)
     {
         $user = User::findOrFail($id);
         $user->delete();

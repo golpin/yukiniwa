@@ -49,11 +49,6 @@ class PostController extends Controller
 
         $ski_resorts = SkiResort::all();
 
-
-        //$like = Like::all();
-        //post9件で1ページとする
-        //dd($posts);
-
         return view('guest.home', compact('posts', 'ski_resorts')); //view側に変数postsを渡す
     }
 
@@ -91,11 +86,11 @@ class PostController extends Controller
             $post->user_id = $user->id; //認証されているidをuser_idカラムに保存
             $post->ski_resort_id = $request->input('ski_resort_id');
             $post->created_at = now();
-            if ($request->hasfile('image')) { //画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので要らない処理かも
+            if ($request->hasfile('image')) { //画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので不要かもしれない
                 $file = $request->file('image');
-                $extention = $file->getClientOriginalExtension(); //元々の拡張子のみ取得
+                $extention = $file->getClientOriginalExtension(); //元々の拡張子を取得
                 $filename = time() . '.' . $extention; //現在の時間と拡張子をくっつける
-                $file->storeAs('public/images', $filename); //画像はpublicを経由してstorage/app/public/imagesに保存
+                $file->storeAs('public/images', $filename); //storage/app/public/imagesに保存
                 $post->image = $filename; //imageカラムにファイル名を保存
             }
             $post->save();
@@ -104,7 +99,7 @@ class PostController extends Controller
             throw $e;
         }
 
-        \Session::flash('err_msg', '記事を登録しました'); //(session('err_msg'))に第2引数の値を渡す
+        \Session::flash('err_msg', '記事を登録しました'); 
         return redirect()->route('user.home');
     }
 
@@ -115,7 +110,8 @@ class PostController extends Controller
             \Session::flash('err_msg', 'データがありません。');
             return redirect(route('user.home'));
         }
-        $ski_resorts = SkiResort::select('id', 'name')->get();
+        $ski_resorts = SkiResort::select('id', 'name')->get();//編集画面でスキー場を選択するために
+
         return view('user.edit', compact('post', 'ski_resorts'));
     }
 
@@ -126,7 +122,6 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->ski_resort_id = $request->input('ski_resort_id');
-        $post->$post->updated_at = now();
 
         if ($request->hasfile('image')) {
             $path = 'public/images/' . $post->image;
@@ -157,12 +152,13 @@ class PostController extends Controller
             if (Storage::exists($path)) {
                 Storage::delete($path);
             }
-            //カラムの値だけだとファイルが残留するので現物も削除する
-            $post->delete();
-
-            \Session::flash('err_msg', '削除しました。');
-            return redirect(route('user.home'));
+            //カラムの値だけだとファイルが残留するので画像そのものも削除する
+            
         }
+        $post->delete();
+
+        \Session::flash('err_msg', '削除しました。');
+        return redirect(route('user.home'));
     }
 
     public function like(Post $post, Request $request)
