@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SkiResortController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -28,10 +29,15 @@ use GuzzleHttp\Middleware;
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'home'])->name('home');//管理者用ホーム画面
-    Route::get('/list', [AdminController::class, 'list'])->name('list');//ユーザー一覧
-    Route::post('/delete/{id}',[AdminController::class, 'delete'])->name('delete');//ユーザー削除
+    Route::get('/list', [AdminController::class, 'userList'])->name('userList');//ユーザー一覧
+    Route::post('/delete/{id}',[AdminController::class, 'userDelete'])->name('userDelete');//ユーザー削除
     //↓スキー場関連を記述していく
-
+    Route::get('/ski_resort_list', [SkiResortController::class, 'skiResortList'])->name('skiResortList');//スキー場一覧
+    Route::post('/ski_resort_delete/{id}',[SkiResortController::class, 'skiResortDelete'])->name('skiResortDelete');//スキー場削除
+    Route::get('/ski_resort_edit/{id}',[SkiResortController::class, 'skiResortEdit'])->name('skiResortEdit');//スキー場編集画面
+    Route::post('/ski_resort_update/{id}', [SkiResortController::class, 'skiResortUpdate'])->name('skiResortUpdate');//スキー場編集更新処理
+    Route::get('/ski_resort_create', [SkiResortController::class, 'skiResortCreate'])->name('skiResortCreate');//スキー場新規追加画面
+    Route::post('/ski_resort_store', [SkiResortController::class, 'skiResortStore'])->name('skiResortStore');//スキー場新規追加保存処理
 });
 
 

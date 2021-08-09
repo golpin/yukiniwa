@@ -18,8 +18,11 @@
                     <x-nav-link :href="route('admin.home')" :active="request()->routeIs('admin.home')">
                         {{ __('管理者ホーム') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.list')" :active="request()->routeIs('admin.list')">
+                    <x-nav-link :href="route('admin.userList')" :active="request()->routeIs('admin.userList')">
                         {{ __('ユーザー管理') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.skiResortList')" :active="request()->routeIs('admin.skiResortList')">
+                        {{ __('スキー場管理') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -73,8 +76,13 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.list')" :active="request()->routeIs('admin.list')">
+            <x-responsive-nav-link :href="route('admin.userList')" :active="request()->routeIs('admin.userList')">
                 {{ __('ユーザー管理') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('admin.skiResortList')" :active="request()->routeIs('admin.skiResortList')">
+                {{ __('スキー場管理') }}
             </x-responsive-nav-link>
         </div>
 
