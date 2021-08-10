@@ -18,7 +18,7 @@
                 src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="content">
             @else
             <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full"
-                src="{{ asset('storage/images/'.'no_image_logo.png') }}" alt="content">
+                src="{{ asset('storage/'.'no_image_logo.png') }}" alt="content">
             @endif
         </div>
 

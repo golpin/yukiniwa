@@ -7,7 +7,7 @@
             {{--postsテーブルのimageカラムの値と同じ画像をiamgesフォルダから表示--}} alt="content" @click="showModal = !showModal">
         @else
         <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80"
-            src="{{ asset('storage/images/'.'no_image_logo.png') }}"
+            src="{{ asset('storage/'.'no_image_logo.png') }}"
             {{--postsテーブルのimageカラムの値がnullならiamgesフォルダからno_image_logo.pngを表示--}} alt="content"
             @click="showModal = !showModal">
         @endif
