@@ -28,7 +28,7 @@ yukiniwaはスノースポーツユーザーに特化したスノースポーツ
 2.composer install  
 3.npm install  
 4.npm run dev  
-5.php artisan migrate (.envが必要です)　
+5.php artisan migrate (.envが必要です)  
 6.php artisan storage:link (シンボリックリンクをはります)  
 7.php artisan serve
 
