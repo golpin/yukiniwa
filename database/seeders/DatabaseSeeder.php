@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             SkiResortSeeder::class,
-            PostSeeder::class,
         ]);
     }
 }
