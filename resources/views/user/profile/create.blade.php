@@ -41,7 +41,7 @@
                                 <label for="icon" class="text-lg leading-7 text-gray-800">アイコン</label>
                                 <input type="file" name="icon" id="icon" accept="image/jpg,image/jpeg,image/png" 
                                     class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-opacity-100 border border-gray-300 rounded outline-none bg-gray-50 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200">
-                                <p>拡張子:jpg/jpeg/png。ファイルサイズの上限:3MB</p>
+                                <p>拡張子:jpg/jpeg/png。ファイルサイズの上限:1MB</p>
                             </div>
                         </div>
                         <div class="flex justify-around w-full p-2 mt-4">

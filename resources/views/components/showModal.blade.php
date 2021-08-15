@@ -15,10 +15,10 @@
         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
         <!--image -->
         @if (!is_null($post->image))
-        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ asset('storage/images/'.$post->image) }}" alt="content">
+        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ $post->image }}" alt="img">
         @else
-        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ asset('storage/images/'.'no_image_logo.png') }}"
-            alt="content">
+        <img class="object-center mx-auto rounded h-60 sm:h-80" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png"
+            alt="no_img">
         @endif
         <!-- Title -->
         <h2 class="px-4 my-2 text-2xl font-medium text-center text-gray-800">{{ $post->title}}</h2>

@@ -12,13 +12,15 @@
         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
 
-        <div class="mx-auto mb-4 sm:w-1/2">
+        <div class="mx-auto mb-4 sm:w-2/3">
             @if (!is_null($post->user->profile))
-            <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
-                src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="content">
+            {{--<img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
+                src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="">--}}
+            <img class="object-cover object-center w-40 h-40 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
+                src="{{ $post->user->profile->icon }}" alt="">
             @else
             <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full"
-                src="{{ asset('storage/images/'.'no_image_logo.png') }}" alt="content">
+            src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png" alt="">
             @endif
         </div>
 
