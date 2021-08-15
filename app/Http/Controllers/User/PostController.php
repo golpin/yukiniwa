@@ -90,7 +90,8 @@ class PostController extends Controller
                 $file = $request->file('image');
                 $extention = $file->getClientOriginalExtension(); //元々の拡張子を取得
                 $filename = time() . '.' . $extention; //現在の時間と拡張子をくっつける
-                $file->storeAs('public/images', $filename); //storage/app/public/imagesに保存
+                //$file->storeAs('public/images', $filename); //storage/app/public/imagesに保存
+                Storage::disk('s3')->putFileAs('/', $file, $filename, 'public');
                 $post->image = $filename; //imageカラムにファイル名を保存
             }
             $post->save();
