@@ -6,7 +6,7 @@
     x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300"
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="showModal = !showModal">
     <!-- Modal -->
-    <div x-show="showModal" class="w-3/4 px-2 py-6 mx-10 bg-white shadow-2xl rounded-xl md:w-1/2" @click.away="showModal = false"
+    <div x-show="showModal" class="w-4/5 px-2 py-6 mx-2 bg-white shadow-2xl sm:mx-10 rounded-xl md:w-1/2" @click.away="showModal = false"
         x-transition:enter="transition ease duration-100 transform"
         x-transition:enter-start="opacity-0 scale-90 translate-y-1"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -15,14 +15,14 @@
         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
         <!--image -->
         @if (!is_null($post->image))
-        <img class="object-center mx-auto rounded h-60 sm:h-80" src="{{ $post->image }}" alt="img">
+        <img class="object-center w-full h-auto mx-auto rounded" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->image }}" alt="img">
         @else
-        <img class="object-center mx-auto rounded h-60 sm:h-80" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png"
+        <img class="object-center w-full h-auto mx-auto rounded" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png"
             alt="no_img">
         @endif
         <!-- Title -->
         <h2 class="px-4 my-2 text-2xl font-medium text-center text-gray-800">{{ $post->title}}</h2>
-        <!-- content 🍺 -->
+        <!-- content  -->
         <p class="px-4 mb-4 font-medium text-gray-900 text-md title-font ">
             {{ $post->content}}
         </p>

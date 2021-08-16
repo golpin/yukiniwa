@@ -79,7 +79,17 @@
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
         </div>
-
-
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('user.login')" :active="request()->routeIs('user.login')">
+                {{ __('ログイン') }}
+            </x-responsive-nav-link>
+        </div>
+        @if (Route::has('user.register'))
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('user.register')" :active="request()->routeIs('user.register')">
+                {{ __('ユーザー登録') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
     </div>
 </nav>
