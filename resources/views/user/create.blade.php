@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="px-4 mx-auto max-w-7xl sm:px-16 ">
             <div class="overflow-hidden shadow-xl rounded-xl">
-                <div class="px-2 py-4 bg-blue-100 border-b border-gray-200">
+                <div class="px-2 py-4 border-b border-gray-200 bg-blue-50">
                     <h2 class="w-3/4 mx-auto text-xl text-center border-b-2 border-indigo-500 sm:w-1/3">投稿フォーム</h2>
                     <form action="{{ route('user.store') }}" method="POST" onsubmit="return checkSubmit()" enctype="multipart/form-data">
                         @csrf
