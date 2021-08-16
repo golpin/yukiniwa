@@ -42,10 +42,12 @@ class ProfileController extends Controller
             $profile->ski_resort_id = $request->input('ski_resort_id');
             if ($request->hasfile('icon')) {//画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので要らない処理かも
                 $file = $request->file('icon');
-                $extention = $file->getClientOriginalExtension();//拡張子を取得
-                $filename = time() . '.' . $extention;//現在の時間と拡張子をくっつける
-                $file->storeAs('public/icons',$filename); //画像はpublicを経由してstorage/app/public/imagesに保存
-                $profile->icon = $filename;//imageカラムにファイル名を保存
+                //$extention = $file->getClientOriginalExtension();//拡張子を取得
+                //$filename = time() . '.' . $extention;//現在の時間と拡張子をくっつける
+                //$file->storeAs('public/icons',$filename); //画像はpublicを経由してstorage/app/public/imagesに保存
+                $path = Storage::disk('s3')->putFile('/', $file, 'public');
+                //$profile->icon = $filename;//imageカラムにファイル名を保存
+                $profile->icon = $path;
             }
             $profile->save();
         }catch(Throwable $e){
@@ -78,17 +80,21 @@ class ProfileController extends Controller
         $profile->ski_resort_id = $request->input('ski_resort_id');
 
         if ($request->hasfile('icon')) {
-            $path ='public/icons/'.$profile->icon;
-            if(Storage::exists($path))
-            {
-                Storage::delete($path);
+            //if(Storage::exists($path))
+            //{
+            //    Storage::delete($path);
+            //}
+            //S3から既存のファイルを削除する
+            if (Storage::disk('s3')->exists( $profile->icon )) {
+                Storage::disk('s3')->delete( $profile->icon );
             }
-            //既存のファイルを削除する
             $file = $request->file('icon');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->storeAs('public/icons',$filename);
-            $profile->icon = $filename;
+            //$extention = $file->getClientOriginalExtension();
+            //$filename = time() . '.' . $extention;
+            //$file->storeAs('public/icons',$filename);
+            $path = Storage::disk('s3')->putFile('/', $file, 'public');
+            //$profile->icon = $filename;
+            $profile->icon = $path;
         }
         $profile->update();
 

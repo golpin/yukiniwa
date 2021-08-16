@@ -88,11 +88,18 @@ class PostController extends Controller
             $post->created_at = now();
             if ($request->hasfile('image')) { //画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので不要かもしれない
                 $file = $request->file('image');
-                $extention = $file->getClientOriginalExtension(); //元々の拡張子を取得
-                $filename = time() . '.' . $extention; //現在の時間と拡張子をくっつける
-                //$file->storeAs('public/images', $filename); //storage/app/public/imagesに保存
-                Storage::disk('s3')->putFileAs('/', $file, $filename, 'public');
-                $post->image = $filename; //imageカラムにファイル名を保存
+                //元々の拡張子を取得
+                //$extention = $file->getClientOriginalExtension(); 
+                //現在の時間と拡張子を繋げる
+                //$filename = time() . '.' . $extention; 
+                //storage/app/public/imagesに保存
+                //$file->storeAs('public/images', $filename); 
+                //S3に保存
+                $path = Storage::disk('s3')->putFile('/', $file, 'public');
+                //画像のフルパスを取得してimageカラムに保存
+                //$post->image = Storage::disk('s3')->url($path);
+                //ファイル名だけ取得してimageカラムに保存
+                $post->image = $path;
             }
             $post->save();
         } catch (Throwable $e) {
@@ -124,17 +131,23 @@ class PostController extends Controller
         $post->content = $request->input('content');
         $post->ski_resort_id = $request->input('ski_resort_id');
 
+
         if ($request->hasfile('image')) {
-            $path = 'public/images/' . $post->image;
-            if (Storage::exists($path)) {
-                Storage::delete($path);
+            //$path = 'public/images/' . $post->image;
+            //if (Storage::exists($path)) {
+            //    Storage::delete($path);
+            //}
+            //S3から既存のファイルを削除する
+            if (Storage::disk('s3')->exists( $post->image)) {
+                Storage::disk('s3')->delete( $post->image);
             }
-            //既存のファイルを削除する
             $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
-            $file->storeAs('public/images', $filename);
-            $post->image = $filename;
+            //$extention = $file->getClientOriginalExtension();
+            //$filename = time() . '.' . $extention;
+            //$file->storeAs('public/images', $filename);
+            $path = Storage::disk('s3')->putFile('/', $file, 'public');
+            //ファイル名だけ取得してimageカラムに保存
+            $post->image = $path;
         }
         $post->update();
 
@@ -149,9 +162,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         if ($post->image) {
-            $path = 'public/images/' . $post->image;
-            if (Storage::exists($path)) {
-                Storage::delete($path);
+
+            if (Storage::disk('s3')->exists( $post->image)) {
+                Storage::disk('s3')->delete( $post->image);
             }
             //カラムの値だけだとファイルが残留するので画像そのものも削除する
             

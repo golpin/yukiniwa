@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'content' => 'required|min:2|max:100',
-            'icon' => 'image|mimes:jpg,jpeg,png|max:3072'
+            'icon' => 'image|mimes:jpg,jpeg,png|max:1024'
         ];
     }
 }

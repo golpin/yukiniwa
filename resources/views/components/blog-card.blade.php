@@ -3,11 +3,11 @@
     <div>
         @if (!is_null($post->image))
         {{--postsテーブルのimageカラムに値が存在するか判定--}}
-        <img class="object-center mx-auto rounded max-w-60 max-h-80" src="{{ asset('storage/images/'.$post->image) }}"
+        <img class="object-center mx-auto rounded max-w-60 max-h-80" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->image}}"
             {{--postsテーブルのimageカラムの値と同じ画像をiamgesフォルダから表示--}} alt="content" @click="showModal = !showModal">
         @else
         <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80"
-            src="{{ asset('storage/images/'.'no_image_logo.png') }}"
+            src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png"
             {{--postsテーブルのimageカラムの値がnullならiamgesフォルダからno_image_logo.pngを表示--}} alt="content"
             @click="showModal = !showModal">
         @endif
@@ -23,7 +23,9 @@
             {{--ユーザー名を表示--}}
             @if ($post->user->profile)
             {{--users.idと一致するprofilesのuser_idがあるか判定--}}
-            <img src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt=""
+            {{--<img src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt=""
+                class="items-center justify-center w-8 h-8 border-2 rounded-full">--}}
+            <img src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->user->profile->icon }}" alt=""
                 class="items-center justify-center w-8 h-8 border-2 rounded-full">
             {{--profilesテーブルにusers.idと一致するprofiles.user_idがある場合、iconカラムの画像を表示する。値が無い場合は何も表示されない--}}
             @endif
