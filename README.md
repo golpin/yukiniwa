@@ -65,6 +65,8 @@ showModal.blade.php、profileModal.blade.php、yukiniwa-logo.blade.phpにs3と�
  
 # Usage
  
+# Authors
+
 
 
 
