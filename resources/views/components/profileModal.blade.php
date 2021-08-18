@@ -30,10 +30,10 @@
             </h2>
             @if ($post->user->profile)
             <div>
-                <p class="mb-4 text-lg leading-relaxed text-blue-600">
+                <p class="mb-4 text-lg leading-relaxed text-center text-blue-600">
                     お気に入りのスキー場
                 </p>
-                <p class="mb-4 text-lg leading-relaxed">
+                <p class="mb-4 text-lg leading-relaxed text-center">
                     {{ $post->user->profile->ski_resort->name }}
                 </p>
             </div>
@@ -41,17 +41,17 @@
                 <p class="mb-2 text-lg leading-relaxed text-center text-blue-600">
                     プロフィール
                 </p>
-                <p class="mb-4 text-lg leading-relaxed">
+                <p class="mb-4 text-lg leading-relaxed text-center">
                     {{ $post->user->profile->content }}
                 </p>
             </div>
 
 
             @else
-            <p class="mb-4 text-xl leading-relaxed">
+            <p class="mb-4 text-xl leading-relaxed text-center">
                 お気に入りのスキー場：まだ登録されていません
             </p>
-            <p class="mb-4 text-xl leading-relaxed">
+            <p class="mb-4 text-xl leading-relaxed text-center">
                 自己紹介:まだ登録されていません
                 @endif
             </p>
