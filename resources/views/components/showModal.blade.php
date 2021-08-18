@@ -23,7 +23,7 @@
         <!-- Title -->
         <h2 class="px-4 my-2 text-2xl font-medium text-center text-gray-800">{{ $post->title}}</h2>
         <!-- content  -->
-        <p class="px-4 mb-4 font-medium text-gray-900 text-md title-font ">
+        <p class="px-4 mb-4 text-lg font-medium text-center text-gray-900 title-font">
             {{ $post->content}}
         </p>
 
