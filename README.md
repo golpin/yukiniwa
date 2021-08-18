@@ -48,17 +48,17 @@ yukiniwaはスノースポーツユーザーが
 4.npm run dev  
 5.php artisan migrate (.envが必要です)  
 6.画像の保存処理と表示の注意点	
-現在、画像の保存処理はAWS S3に保存、表示関連についてもS3から表示となっております。
-ローカル完結で保存・表示を試されたい方は
-app/Http/Controllers/User/PostController.php内にローカル用の処理をコメントアウトしてありますのでそちらをご利用下さい。
-※php artisan storage:linkを必ず実施
-※public配下にno_image_logo.pngとYUKINIWA.pngがありますので
-no_image_logo.pngをstorage/app/public/imagesとstorage/app/public/iconsにコピーして下さい。
-YUKINIWA.pngはstorage/app/public/imagesにコピーして下さい。
-※resources/views/components内のblog-card.blade.php、admin-blog-card.blade.php、guest-blog-card.blade.php、
-showModal.blade.php、profileModal.blade.php、yukiniwa-logo.blade.phpにs3とローカル用の表示記述がありますのでどちらかをご利用下さい。
-※s3で試用する場合はno_image_logo.pngとYUKINIWA.pngを予めバケットに保存しておく必要があります。
-7.php artisan serve
+現在、画像の保存処理はAWS S3に保存、表示関連についてもS3から表示となっております。   
+ローカル完結で保存・表示を試されたい方は    
+app/Http/Controllers/User/PostController.php内にローカル用の処理をコメントアウトしてありますのでそちらをご利用下さい。   
+※php artisan storage:linkを必ず実施  
+※public配下にno_image_logo.pngとYUKINIWA.pngがありますので 
+no_image_logo.pngをstorage/app/public/imagesとstorage/app/public/iconsにコピーして下さい。  
+YUKINIWA.pngはstorage/app/public/imagesにコピーして下さい。    
+※resources/views/components内のblog-card.blade.php、admin-blog-card.blade.php、guest-blog-card.blade.php、   
+showModal.blade.php、profileModal.blade.php、yukiniwa-logo.blade.phpにs3とローカル用の表示記述がありますのでどちらかをご利用下さい。 
+※s3で試用する場合はno_image_logo.pngとYUKINIWA.pngを予めバケットに保存しておく必要があります。 
+7.php artisan serve 
 
  
 # Usage
