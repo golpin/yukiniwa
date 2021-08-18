@@ -7,7 +7,7 @@ yukiniwaはスノースポーツユーザーが
  以下のURLから気軽にご利用ください。
 
  https://hidden-headland-38760.herokuapp.com/
- https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/yukiniwa-sample.png
+
 # Features
  
  機能の紹介  
