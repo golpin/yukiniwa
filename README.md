@@ -6,7 +6,9 @@ yukiniwaはスノースポーツユーザーが
 # DEMO
  以下のURLから気軽にご利用ください。
 
- https://hidden-headland-38760.herokuapp.com/
+ https://hidden-headland-38760.herokuapp.com/   
+ ![yukiniwa-sample](https://user-images.githubusercontent.com/84654773/129986228-70902052-8c97-40b2-b2fa-46ec1ab5609a.png)
+
 
 # Features
  
