@@ -21,9 +21,12 @@ class PostController extends Controller
     {
 
         $posts = Post::with(['ski_resort', 'user'])
-            ->sortBySkiResort($request->ski_resort ?? '0') //スキー場による検索
-            ->sortByKeyword($request->keyword) //キーワード検索
-            ->sortBy($request->sort) //作成日によるソート
+            ->sortBySkiResort($request->ski_resort ?? '0') 
+            //スキー場による検索
+            ->sortByKeyword($request->keyword) 
+            //キーワード検索
+            ->sortBy($request->sort) 
+            //作成日によるソート
             ->paginate(20);
 
         $ski_resorts = SkiResort::all();
@@ -42,14 +45,17 @@ class PostController extends Controller
     {
 
         $posts = Post::with(['ski_resort', 'user'])
-            ->sortBySkiResort($request->ski_resort ?? '0') //スキー場による検索
-            ->sortByKeyword($request->keyword) //キーワード検索
-            ->sortBy($request->sort) //作成日によるソート
+            ->sortBySkiResort($request->ski_resort ?? '0') 
+            //スキー場による検索
+            ->sortByKeyword($request->keyword) 
+            //キーワード検索
+            ->sortBy($request->sort) 
+            //作成日によるソート
             ->paginate(20);
 
         $ski_resorts = SkiResort::all();
 
-        return view('guest.home', compact('posts', 'ski_resorts')); //view側に変数postsを渡す
+        return view('guest.home', compact('posts', 'ski_resorts')); 
     }
 
     public function mypost()
@@ -57,15 +63,12 @@ class PostController extends Controller
 
         $posts = Post::with(['ski_resort', 'user'])
             ->where('user_id', Auth::id())->paginate(12);
+            //12投稿ごとにページネーション
 
         $likes = Like::where('user_id', Auth::user()->id)
             ->get();
 
-        //$like = Like::all();
-        //post9件で1ページとする
-        //dd($posts);
-
-        return view('user.mypost', compact('posts', 'likes')); //view側に変数postsを渡す
+        return view('user.mypost', compact('posts', 'likes')); 
     }
 
     public function create()
@@ -83,30 +86,27 @@ class PostController extends Controller
             $post = new Post();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
-            $post->user_id = $user->id; //認証されているidをuser_idカラムに保存
+            $post->user_id = $user->id; 
             $post->ski_resort_id = $request->input('ski_resort_id');
-            $post->created_at = now();
-            if ($request->hasfile('image')) { //画像ファイルが存在するときだけ処理を行う。ただし、validationではrequiredなので不要かもしれない
+            if ($request->hasfile('image')) { 
+                //画像ファイルが存在するときのみ処理
                 $file = $request->file('image');
-                //元々の拡張子を取得
                 //$extention = $file->getClientOriginalExtension(); 
-                //現在の時間と拡張子を繋げる
-                //$filename = time() . '.' . $extention; 
-                //storage/app/public/imagesに保存
+                //拡張子を取得
+                //$filename = time() . '.' . $extention;
+                //現在の時間と拡張子を繋げる 
                 //$file->storeAs('public/images', $filename); 
-                //S3に保存
+                //画像ファイルをimagesに保存
                 $path = Storage::disk('s3')->putFile('/', $file, 'public');
-                //画像のフルパスを取得してimageカラムに保存
-                //$post->image = Storage::disk('s3')->url($path);
-                //ファイル名だけ取得してimageカラムに保存
+                //S3に保存
                 $post->image = $path;
+                //ファイル名だけ取得してimageカラムに保存
             }
             $post->save();
         } catch (Throwable $e) {
             Log::error($e);
             throw $e;
         }
-
         \Session::flash('err_msg', '記事を登録しました'); 
         return redirect()->route('user.home');
     }
@@ -118,7 +118,7 @@ class PostController extends Controller
             \Session::flash('err_msg', 'データがありません。');
             return redirect(route('user.home'));
         }
-        $ski_resorts = SkiResort::select('id', 'name')->get();//編集画面でスキー場を選択するために
+        $ski_resorts = SkiResort::select('id', 'name')->get();
 
         return view('user.edit', compact('post', 'ski_resorts'));
     }
@@ -137,17 +137,18 @@ class PostController extends Controller
             //if (Storage::exists($path)) {
             //    Storage::delete($path);
             //}
-            //S3から既存のファイルを削除する
-            if (Storage::disk('s3')->exists( $post->image)) {
-                Storage::disk('s3')->delete( $post->image);
+            if (Storage::disk('s3')->exists($post->image)) {
+                Storage::disk('s3')->delete($post->image);
             }
+            //S3から既存のファイルを削除
             $file = $request->file('image');
             //$extention = $file->getClientOriginalExtension();
             //$filename = time() . '.' . $extention;
             //$file->storeAs('public/images', $filename);
             $path = Storage::disk('s3')->putFile('/', $file, 'public');
-            //ファイル名だけ取得してimageカラムに保存
+            //s3に画像を保存
             $post->image = $path;
+            //imageカラムにs3保存時のファイル名を保存
         }
         $post->update();
 
@@ -160,14 +161,15 @@ class PostController extends Controller
     public function delete($id)
     {
         $post = Post::findOrFail($id);
-
+        //$path = 'public/images/' . $post->image;
+        //if (Storage::exists($path)) {
+        //    Storage::delete($path);
+        //}
         if ($post->image) {
-
             if (Storage::disk('s3')->exists( $post->image)) {
                 Storage::disk('s3')->delete( $post->image);
             }
-            //カラムの値だけだとファイルが残留するので画像そのものも削除する
-            
+            //s3の画像を削除
         }
         $post->delete();
 

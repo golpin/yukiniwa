@@ -79,7 +79,6 @@
         </div>
     </div>
     <script>
-        //表示順で選択したらsubmitされる
         const select = document.getElementById('sort')
         select.addEventListener('change',function(){
             this.form.submit()

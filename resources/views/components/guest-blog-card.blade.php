@@ -2,14 +2,23 @@
     x-data="{ showModal : false,profileModal : false }">
     <div>
         @if (!is_null($post->image))
-        {{--postsテーブルのimageカラムに値が存在するか判定--}}
-        <img class="object-center mx-auto rounded max-w-60 max-h-80" src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->image}}"
-            {{--postsテーブルのimageカラムの値と同じ画像をiamgesフォルダから表示--}} alt="content" @click="showModal = !showModal">
+            {{-- postsテーブルのimageカラムに値が存在するか判定 --}}
+            <img class="object-center mx-auto rounded max-w-60 max-h-80"
+                src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->image }}" alt=""
+                @click="showModal = !showModal">
+            {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="{{ asset('storage/images/'.$post->image)}}"
+        alt="" @click="showModal = !showModal"> --}}
+            {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="https://バケット名.s3.リージョン.amazonaws.com/{{ $post->image}}"
+        alt="" @click="showModal = !showModal"> --}}
+            {{-- postsテーブルのimageカラムの値と同じ画像を表示 --}}
         @else
-        <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80"
-            src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png"
-            {{--postsテーブルのimageカラムの値がnullならiamgesフォルダからno_image_logo.pngを表示--}} alt="content"
-            @click="showModal = !showModal">
+            <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80"
+                src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png" alt=""
+                @click="showModal = !showModal">
+            {{-- <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80" 
+        src="https://バケット名.s3.リージョン.amazonaws.com/no_image_logo.png" alt="" @click="showModal = !showModal"> --}}
+            {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="{{ asset('storage/images/'.no_image_logo.png)}}"
+        alt="" @click="showModal = !showModal"> --}}
         @endif
     </div>
 
@@ -19,15 +28,16 @@
             {{ $post->title}}{{--タイトルを表示--}}
         </p>
         <div class="flex flex-row" @click="profileModal = !profileModal">
-            <p class="my-auto text-lg text-gray-600">投稿者:{{ $post->user->name}}</p>
-            {{--ユーザー名を表示--}}
+            <p class="my-auto text-lg text-gray-600">投稿者:{{ $post->user->name }}</p>
+            {{-- ユーザー名を表示 --}}
             @if ($post->user->profile)
-            {{--users.idと一致するprofilesのuser_idがあるか判定--}}
-            {{--<img src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt=""
-                class="items-center justify-center w-8 h-8 border-2 rounded-full">--}}
-                <img src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->user->profile->icon }}" alt=""
-                class="items-center justify-center w-8 h-8 border-2 rounded-full">
-            {{--profilesテーブルにusers.idと一致するprofiles.user_idがある場合、iconカラムの画像を表示する。値が無い場合は何も表示されない--}}
+            {{-- users.idと一致するprofilesのuser_idがあるか判定 --}}
+                <img src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->user->profile->icon }}"
+                    alt="" class="items-center justify-center w-8 h-8 border-2 rounded-full">
+                {{-- <img src="https://バケット名.s3.リージョン.amazonaws.com/{{ $post->user->profile->icon }}" alt=""
+                class="items-center justify-center w-8 h-8 border-2 rounded-full"> --}}
+                {{-- <img src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt=""
+                class="items-center justify-center w-8 h-8 border-2 rounded-full"> --}}
             @endif
         </div>
         <p class="text-gray-600 text-md">
