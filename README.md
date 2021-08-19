@@ -27,7 +27,7 @@ yukiniwaはスノースポーツユーザーが
  ### 2.ユーザー(ログイン状態)   
  ・投稿一覧画面の閲覧  
  ->20投稿ごとのページネーション  
- ->自分の投稿のみ、モーダルに更新・削除ボタンが表示され機能の使用が可能 
+ ->自分の投稿のみ、モーダルに更新・削除ボタンが表示され機能の使用が可能   
  ->キーワード検索、スキー場検索、投稿の新旧順によるソート機能  
  ->投稿画像をクリックすると投稿モーダルが表示される。 
  ・投稿画面  
@@ -60,7 +60,7 @@ yukiniwaはスノースポーツユーザーが
 ローカル完結で保存・表示を試されたい方は    
 app/Http/Controllers/User/PostController.php内にローカル用の処理をコメントアウトしてありますのでそちらをご利用下さい。   
 ※php artisan storage:linkを必ず実施  
-※public配下にno_image_logo.pngとYUKINIWA.pngがありますので 
+※public配下にno_image_logo.pngとYUKINIWA.pngがありますので  
 no_image_logo.pngをstorage/app/public/imagesとstorage/app/public/iconsにコピーして下さい。  
 YUKINIWA.pngはstorage/app/public/imagesにコピーして下さい。    
 ※resources/views/components内のblog-card.blade.php、admin-blog-card.blade.php、guest-blog-card.blade.php、   
