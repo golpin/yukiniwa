@@ -64,8 +64,8 @@ app/Http/Controllers/User/PostController.php内にローカル用の処理をコ
 no_image_logo.pngをstorage/app/public/imagesとstorage/app/public/iconsにコピーして下さい。  
 YUKINIWA.pngはstorage/app/public/imagesにコピーして下さい。    
 ※resources/views/components内のblog-card.blade.php、admin-blog-card.blade.php、guest-blog-card.blade.php、   
-showModal.blade.php、profileModal.blade.php、yukiniwa-logo.blade.phpに 
-s3とローカル用の表示記述がありますのでどちらかをご利用下さい。 
+showModal.blade.php、profileModal.blade.php、yukiniwa-logo.blade.phpに  
+s3とローカル用の表示記述がありますのでどちらかをご利用下さい。  
 ※s3で試用する場合はno_image_logo.pngとYUKINIWA.pngを予めバケットに保存しておく必要があります。 
 7.php artisan serve 
 
