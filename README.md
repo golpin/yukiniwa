@@ -8,7 +8,7 @@ yukiniwaはスノースポーツユーザーが
 
  
 # DEMO
- 以下のURLから気軽にご利用ください。
+ 以下のURLから気軽にご利用ください。  
  mailaddress:user1@test.com  
  password:zxcv1234  
 ※新規登録の場合には架空のメールアドレスをご利用下さい  
