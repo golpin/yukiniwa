@@ -7,9 +7,10 @@ yukiniwaはスノースポーツユーザーが
 
 ※作者はスキーヤーです。  
 シーズンになるとスキーヤーやスノーボーダーが各スノースポーツの楽しさやゲレンデの情報をツイッター等SNSで発信しますが、  
-実際のユーザーの声をある対象に絞って知りたいと思った際に、探しにくいという点に注目しました。　
+実際のユーザーの声をある対象に絞って知りたいと思った際に、必ずしもキーワード検索やタイムライン上で見つけられるか分からず、    
+求めるものに到達するまでの手間や時間の浪費が発生し、簡便さや可視性が低いことに注目しました。
 
-# DEMO
+# デモ
  以下のURLから気軽にご利用ください。  
  ### mailaddress:user1@test.com  
  ### password:zxcv1234  
@@ -17,8 +18,15 @@ yukiniwaはスノースポーツユーザーが
  https://hidden-headland-38760.herokuapp.com/   
  ![yukiniwa-sample](https://user-images.githubusercontent.com/84654773/129986228-70902052-8c97-40b2-b2fa-46ec1ab5609a.png)
 
+# 使用技術
+　- ### PHP 8.0.9  
+　- Laravel 8.40  
+　- Alpine.js 2.7.3  
+　- Tailwind CSS 2.0.2  
+　- MySQL(ローカル:MaridDB 10.4.20、本番環境:ClearDB）  
+　- AWS(S3)
 
-# Features
+# 機能
  
  機能の紹介  
  ### 1.ゲスト(未ログイン状態)  
