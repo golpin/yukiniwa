@@ -18,13 +18,14 @@ yukiniwaはスノースポーツユーザーが
  https://hidden-headland-38760.herokuapp.com/   
  ![yukiniwa-sample](https://user-images.githubusercontent.com/84654773/129986228-70902052-8c97-40b2-b2fa-46ec1ab5609a.png)
 
-# 使用技術
-　- ### PHP 8.0.9  
-　- Laravel 8.40  
-　- Alpine.js 2.7.3  
-　- Tailwind CSS 2.0.2  
-　- MySQL(ローカル:MaridDB 10.4.20、本番環境:ClearDB）  
-　- AWS(S3)
+# 使用技術  
+* HTML/CSS
+* PHP 8.0.9  
+* Laravel 8.40  
+* Alpine.js 2.7.3  
+* Tailwind CSS 2.0.2  
+* MySQL(ローカル:MaridDB 10.4.20、本番環境:ClearDB）  
+* AWS(S3)
 
 # 機能
  
