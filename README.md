@@ -9,8 +9,8 @@ yukiniwaはスノースポーツユーザーが
  
 # DEMO
  以下のURLから気軽にご利用ください。  
- mailaddress:user1@test.com  
- password:zxcv1234  
+ ### mailaddress:user1@test.com  
+ ### password:zxcv1234  
 ※新規登録の場合には架空のメールアドレスをご利用下さい  
  https://hidden-headland-38760.herokuapp.com/   
  ![yukiniwa-sample](https://user-images.githubusercontent.com/84654773/129986228-70902052-8c97-40b2-b2fa-46ec1ab5609a.png)
