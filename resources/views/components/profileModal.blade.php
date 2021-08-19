@@ -14,13 +14,17 @@
 
         <div class="mx-auto mb-4 sm:w-2/3">
             @if (!is_null($post->user->profile))
-            {{--<img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
-                src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="">--}}
             <img class="object-cover object-center w-40 h-40 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
                 src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->user->profile->icon }}" alt="">
+            {{--<img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
+                src="https://バケット名.s3.リージョン.amazonaws.com/{{ $post->user->profile->icon }}" alt="">--}}
+            {{--<img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full lg:w-80 lg:h-80"
+                src="{{ asset('storage/icons/'.$post->user->profile->icon) }}" alt="">--}}
             @else
             <img class="object-cover object-center w-48 h-48 p-2 mx-auto border-2 rounded-full"
             src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png" alt="">
+            {{-- <img class="object-center w-full h-auto mx-auto rounded"" src="{{ asset('storage/images/'.no_image_logo.png)}}" alt=""> --}}
+            {{-- <img class="object-center w-full h-auto mx-auto rounded"" src="https://バケット名.s3.リージョン.amazonaws.com/no_image_logo.png" alt=""> --}}
             @endif
         </div>
 
