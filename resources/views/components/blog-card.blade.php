@@ -82,6 +82,7 @@
                         </button>
                     </form>
                 @endif
+                {{--いいねの数--}}
                 <span class="mr-2">
                     {{ $post->like->count() }}
                 </span>

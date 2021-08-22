@@ -6,6 +6,7 @@
             </h1>
             <form action="{{ route('user.home') }}" method="get">
                 @csrf
+                {{-- キーワード検索 --}}
                 <div class="flex flex-row justify-end">
                     <div class="my-auto mr-2">
                         <input name="keyword" type="text" class="text-sm border-2 " placeholder="キーワードを入力してください">
@@ -21,6 +22,7 @@
                     </button>
                 </div>
                 <div class="flex justify-end">
+                    {{-- スキー場ソート --}}
                     <div class="flex flex-col sm:flex-row">
                         <span class="mx-2 my-auto text-md">
                             スキー場ソート
@@ -36,6 +38,7 @@
                             @endforeach
                         </select>
                     </div>
+                    {{-- 表示順 --}}
                     <div class="flex flex-col sm:flex-row">
                         <span class="mx-2 my-auto">
                             表示順
@@ -55,7 +58,7 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6" >
+        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6">
             <div class="mx-2 overflow-hidden rounded-lg shadow-md">
                 <div class="p-4 bg-blue-200 border-b border-gray-200">
                     @if (session('err_msg'))
@@ -75,17 +78,16 @@
             </div>
         </div>
     </div>
-        <script>
-            const select = document.getElementById('sort')
-            select.addEventListener('change', function() {
-                this.form.submit()
-            })
-        </script>
-        <script>
-            const ski_resort = document.getElementById('ski_resort')
-            ski_resort.addEventListener('change', function() {
-                this.form.submit()
-            })
-        </script>
-
+    <script>
+        const select = document.getElementById('sort')
+        select.addEventListener('change', function() {
+            this.form.submit()
+        })
+    </script>
+    <script>
+        const ski_resort = document.getElementById('ski_resort')
+        ski_resort.addEventListener('change', function() {
+            this.form.submit()
+        })
+    </script>
 </x-app-layout>
