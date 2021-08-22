@@ -1,11 +1,10 @@
 <x-app-layout>
-
     <x-slot name="header">
         <div class="flex flex-col justify-between sm:flex-row">
             <h1 class="text-xl font-semibold leading-tight text-gray-800 ">
                 ホーム
             </h1>
-            <form action="{{ route('user.home')}}" method="get">
+            <form action="{{ route('user.home') }}" method="get">
                 @csrf
                 <div class="flex flex-row justify-end">
                     <div class="my-auto mr-2">
@@ -27,14 +26,13 @@
                             スキー場ソート
                         </span>
                         <select name="ski_resort" id="ski_resort" class="text-sm ">
-                            <option value="0" @if(\Request::get('ski_resort')=="0" ) selected @endif>
+                            <option value="0" @if (\Request::get('ski_resort') == '0') selected @endif>
                                 全て
                             </option>
                             @foreach ($ski_resorts as $ski_resort)
-                            <option value="{{ $ski_resort->id }}" @if(\Request::get('ski_resort')==$ski_resort->id )
-                                selected @endif>
-                                {{ $ski_resort->name }}
-                            </option>
+                                <option value="{{ $ski_resort->id }}" @if (\Request::get('ski_resort') == $ski_resort->id) selected @endif>
+                                    {{ $ski_resort->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -43,10 +41,10 @@
                             表示順
                         </span>
                         <select name="sort" id="sort" class="text-sm ">
-                            <option value="1" @if(\Request::get('sort')=="1" ) selected @endif>
+                            <option value="1" @if (\Request::get('sort') == '1') selected @endif>
                                 新しい順
                             </option>
-                            <option value="2" @if(\Request::get('sort')=="2" ) selected @endif>
+                            <option value="2" @if (\Request::get('sort') == '2') selected @endif>
                                 古い順
                             </option>
                         </select>
@@ -57,20 +55,19 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6">
+        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6" >
             <div class="mx-2 overflow-hidden rounded-lg shadow-md">
                 <div class="p-4 bg-blue-200 border-b border-gray-200">
                     @if (session('err_msg'))
-                    <p class="w-1/3 mx-auto text-lg text-center bg-green-400 rounded-lg">
-                        {{ session('err_msg') }}
-                    </p>
+                        <p class="w-1/3 mx-auto text-lg text-center bg-green-400 rounded-lg">
+                            {{ session('err_msg') }}
+                        </p>
                     @endif
                     <div class="flex flex-wrap object-center mx-auto justify-items-center">
                         @foreach ($posts as $post)
-                        <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
-                            <x-blog-card :post="$post" :likes="$likes" />
-
-                        </div>
+                            <div class="flex flex-wrap w-full p-2 sm:w-1/2 lg:w-1/3 ">
+                                <x-blog-card :post="$post" :likes="$likes" />
+                            </div>
                         @endforeach
                     </div>
                     {{ $posts->links() }}
@@ -78,17 +75,17 @@
             </div>
         </div>
     </div>
-    <script>
-        const select = document.getElementById('sort')
-        select.addEventListener('change',function(){
-            this.form.submit()
-        })
-    </script>
-    <script>
-        const ski_resort = document.getElementById('ski_resort')
-        ski_resort.addEventListener('change',function(){
-            this.form.submit()
-        })
-    </script>
+        <script>
+            const select = document.getElementById('sort')
+            select.addEventListener('change', function() {
+                this.form.submit()
+            })
+        </script>
+        <script>
+            const ski_resort = document.getElementById('ski_resort')
+            ski_resort.addEventListener('change', function() {
+                this.form.submit()
+            })
+        </script>
 
 </x-app-layout>
