@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             マイ投稿
@@ -7,7 +6,7 @@
     </x-slot>
 
     <div class="py-10">
-        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6">
+        <div class="mx-auto max-w-7xl sm:px-2 lg:px-6" x-data="{ showModal : false,profileModal : false }">
             <div class="mx-2 overflow-hidden rounded-lg shadow-md">
                 <div class="p-4 bg-indigo-100 border-b border-gray-200">
                     @if (session('err_msg'))
@@ -21,7 +20,6 @@
                             <x-blog-card :post="$post" :likes="$likes" />
                         </div>
                         @endforeach
-
                     </div>
                     {{ $posts->links() }}
                 </div>

@@ -1,11 +1,12 @@
+
 <div class="flex flex-col justify-between w-full p-2 mx-auto border rounded-lg shadow-md bg-gray-50"
-    x-data="{ showModal : false,profileModal : false }">
+    x-data="{ showModal : false , profileModal : false }">
     <div>
+        {{-- postsテーブルのimageカラムに値が存在するか判定 --}}
         @if (!is_null($post->image))
-            {{-- postsテーブルのimageカラムに値が存在するか判定 --}}
             <img class="object-center mx-auto rounded max-w-60 max-h-80"
                 src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->image }}" alt=""
-                @click="showModal = !showModal">
+                @click=" showModal = ! showModal ">
             {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="{{ asset('storage/images/'.$post->image)}}"
         alt="" @click="showModal = !showModal"> --}}
             {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="https://バケット名.s3.リージョン.amazonaws.com/{{ $post->image}}"
@@ -14,7 +15,7 @@
         @else
             <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80"
                 src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/no_image_logo.png" alt=""
-                @click="showModal = !showModal">
+                @click=" showModal = ! showModal ">
             {{-- <img class="object-center mx-auto border-2 rounded max-w-60 max-h-80" 
         src="https://バケット名.s3.リージョン.amazonaws.com/no_image_logo.png" alt="" @click="showModal = !showModal"> --}}
             {{-- <img class="object-center mx-auto rounded max-w-60 max-h-80" src="{{ asset('storage/images/'.no_image_logo.png)}}"
@@ -24,15 +25,18 @@
 
 
     <div>
+        {{-- タイトルを表示 --}}
         <p class="overflow-hidden text-lg font-medium text-indigo-500 overflow-ellipsis">
             {{ $post->title }}
-            {{-- タイトルを表示 --}}
         </p>
-        <div class="flex flex-row" @click="profileModal = !profileModal">
-            <p class="my-auto text-lg text-gray-600">投稿者:{{ $post->user->name }}</p>
+        <p class="mb-2 font-medium text-left text-gray-900 text-md ">
+            {{ $post->content }}
+        </p>
+        <div class="flex flex-row" @click=" profileModal = !profileModal ">
             {{-- ユーザー名を表示 --}}
-            @if ($post->user->profile)
+            <p class="my-auto text-lg text-gray-600">投稿者:{{ $post->user->name }}</p>
             {{-- users.idと一致するprofilesのuser_idがあるか判定 --}}
+            @if ($post->user->profile)
                 <img src="https://yukiniwa-bucket.s3.ap-northeast-1.amazonaws.com/{{ $post->user->profile->icon }}"
                     alt="" class="items-center justify-center w-8 h-8 border-2 rounded-full">
                 {{-- <img src="https://バケット名.s3.リージョン.amazonaws.com/{{ $post->user->profile->icon }}" alt=""
@@ -41,16 +45,17 @@
                 class="items-center justify-center w-8 h-8 border-2 rounded-full"> --}}
             @endif
         </div>
+        {{-- posts.ski_resort_idと一致するidのski_resorts.nameを表示 --}}
         <p class="text-gray-600 text-md">
             ゲレンデ:{{ $post->ski_resort->name }}
-            {{-- posts.ski_resort_idと一致するidのski_resorts.nameを表示 --}}
         </p>
         <div class="flex justify-between">
+            {{-- 投稿日の表示 --}}
             <p class="text-sm text-gray-600">
                 投稿日:{{ $post->created_at->format('Y-m-d') }}
-                {{-- 投稿日の表示 --}}
             </p>
 
+            {{--いいね機能--}}
             <div class="flex">
                 @if ($likes->where('post_id', $post->id)->first())
                     <form action="{{ route('user.unlike', $post) }}" method="POST">
@@ -81,6 +86,7 @@
                     {{ $post->like->count() }}
                 </span>
             </div>
+            {{--いいね機能ここまで--}}
         </div>
     </div>
     {{-- showModalの中身 --}}
