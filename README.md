@@ -26,6 +26,7 @@ yukiniwaはスノースポーツユーザーが
 * Tailwind CSS 2.0.2  
 * MySQL(ローカル:MaridDB 10.4.20、本番環境:ClearDB）  
 * AWS(S3)
+* 
 
 # 機能
  
